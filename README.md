@@ -3,14 +3,20 @@
 This is a collection of skills for Phenomenon Studio.
 It contains a combination of internal custom skills, and open-source skills.
 
+This repo contains skills divided by such groups:
+- **Common** - Skills that are common to all projects (`./common`).
+- **FE** - Skills that are specific to FE projects (`./fe`).
+- **BE** - Skills that are specific to BE projects (`./be`).
+
 Skills are organized into the following categories:
 
 - **Planning & design**
 - **Implementation**
-  - **Common React+TS**
-  - **Vite-based projects**
-  - **Next.js-based projects**
-  - **Shadcn/UI-based projects**
+  - **FE - Common**
+  - **BE - Common**
+  - **FE - Vite-based projects**
+  - **FE - Next.js-based projects**
+  - **FE - Shadcn/UI-based projects**
 - **Quality and security**
 - **Tooling and Meta**
 
@@ -52,13 +58,17 @@ Work the issues/feature out to give the output to implementation skills.
   ```bash
   npx skills@latest add mattpocock/skills/grill-me
   ```
-- `to-prd` [Link](./to-prd/SKILL.md) - Turn the current conversation context into a PRD and submit it as a Markdown file. Use when user wants to create a PRD from the current context.
+- `to-prd` [Link](./common/to-prd/SKILL.md) - Turn the current conversation context into a PRD and submit it as a Markdown file. Use when user wants to create a PRD from the current context.
   ```bash
-  npx skills@latest add Phenomenon-Studio/phenomenon-skills/to-prd
+  npx skills@latest add Phenomenon-Studio/phenomenon-skills/common/to-prd
   ```
-- `to-issue` [Link](./to-issue/SKILL.md) -Break the PRD or conversation context into independently-grabbable Markdown files using tracer-bullet vertical slices. Use when user wants to convert a prd into issues, create implementation plan, or break down conversation context into issue or issues.
+- `to-issue` [Link](./common/to-issue/SKILL.md) -Break the PRD or conversation context into independently-grabbable Markdown files using tracer-bullet vertical slices. Use when user wants to convert a prd into issues, create implementation plan, or break down conversation context into issue or issues.
   ```bash
-  npx skills@latest add Phenomenon-Studio/phenomenon-skills/to-issue
+  npx skills@latest add Phenomenon-Studio/phenomenon-skills/common/to-issue
+  ```
+- `do-work` [Link](./common/do-work/SKILL.md) - Execute a complete unit of work: plan it, build it, validate it. Use when user wants to do work, build a feature, fix a bug, or implement the issue
+  ```bash
+  npx skills@latest add Phenomenon-Studio/phenomenon-skills/common/do-work
   ```
 - `zoom-out` [Link](https://github.com/mattpocock/skills/tree/main/zoom-out) - Zoom out and give broader context or a higher-level perspective. Use when you're unfamiliar with a section of code or need to understand how it fits into the bigger picture.
   ```bash
@@ -67,62 +77,62 @@ Work the issues/feature out to give the output to implementation skills.
 
 ## Implementation
 
-### Common React+TS
-- `do-work` [Link](./do-work/SKILL.md) - Execute a complete unit of work: plan it, build it, validate it. Use when user wants to do work, build a feature, fix a bug, or implement the issue
+### FE - Common 
+- `react` [Link](./fe/react/SKILL.md) - Build clean, modern React components that apply common best practices and avoid common pitfalls like unnecessary state management or useEffect usage.
   ```bash
-  npx skills@latest add Phenomenon-Studio/phenomenon-skills/do-work
+  npx skills@latest add Phenomenon-Studio/phenomenon-skills/fe/react
   ```
-- `react` [Link](./react/SKILL.md) - Build clean, modern React components that apply common best practices and avoid common pitfalls like unnecessary state management or useEffect usage.
+- `typescript` [Link](./fe/typescript/SKILL.md) - Write clean, efficient TypeScript code that follows project conventions and advanced type patterns. Use when writing or reviewing TypeScript code, defining types, creating generics, handling errors, or working with React components, Zod schemas, and TanStack libraries.
   ```bash
-  npx skills@latest add Phenomenon-Studio/phenomenon-skills/react
+  npx skills@latest add Phenomenon-Studio/phenomenon-skills/fe/typescript
   ```
-- `typescript` [Link](./typescript/SKILL.md) - Write clean, efficient TypeScript code that follows project conventions and advanced type patterns. Use when writing or reviewing TypeScript code, defining types, creating generics, handling errors, or working with React components, Zod schemas, and TanStack libraries.
+- `accessible-html-jsx` [Link](./fe/accessible-html-jsx/SKILL.md) - Write clean, modern, and highly accessible HTML & JSX code, using semantically correct elements and attributes. Use when writing or reviewing HTML/JSX markup, creating forms, handling ARIA attributes, building interactive widgets, or implementing keyboard navigation.
   ```bash
-  npx skills@latest add Phenomenon-Studio/phenomenon-skills/typescript
+  npx skills@latest add Phenomenon-Studio/phenomenon-skills/fe/accessible-html-jsx
   ```
-- `accessible-html-jsx` [Link](./accessible-html-jsx/SKILL.md) - Write clean, modern, and highly accessible HTML & JSX code, using semantically correct elements and attributes. Use when writing or reviewing HTML/JSX markup, creating forms, handling ARIA attributes, building interactive widgets, or implementing keyboard navigation.
+- `tanstack-query` [Link](./fe/tansatck-query/SKILL.md) - TanStack Query patterns for this repo — queryOptions/mutationOptions factories, query key hierarchies, service layer integration, optimistic updates, Suspense usage, error handling, and TanStack Router data loading. Use when creating queries, mutations, API services, query keys, cache invalidation, optimistic updates, or integrating data fetching with routes.
   ```bash
-  npx skills@latest add Phenomenon-Studio/phenomenon-skills/accessible-html-jsx
+  npx skills@latest add Phenomenon-Studio/phenomenon-skills/fe/tanstack-query
   ```
-- `tanstack-query` [Link](./tansatck-query/SKILL.md) - TanStack Query patterns for this repo — queryOptions/mutationOptions factories, query key hierarchies, service layer integration, optimistic updates, Suspense usage, error handling, and TanStack Router data loading. Use when creating queries, mutations, API services, query keys, cache invalidation, optimistic updates, or integrating data fetching with routes.
+- `tanstack-form` [Link](./fe/tanstack-form/SKILL.md) - TanStack Form patterns for this repo — form composition, field components, Zod validation schemas, error tracking, form instance usage, and layout helpers. Use when creating new forms, adding form fields, writing form validation, or working with TanStack Form in this project.
   ```bash
-  npx skills@latest add Phenomenon-Studio/phenomenon-skills/tanstack-query
-  ```
-- `tanstack-form` [Link](./tanstack-form/SKILL.md) - TanStack Form patterns for this repo — form composition, field components, Zod validation schemas, error tracking, form instance usage, and layout helpers. Use when creating new forms, adding form fields, writing form validation, or working with TanStack Form in this project.
-  ```bash
-  npx skills@latest add Phenomenon-Studio/phenomenon-skills/tanstack-form
+  npx skills@latest add Phenomenon-Studio/phenomenon-skills/fe/tanstack-form
   ```
 
-### Vite-based projects
+### BE - Common B
 
-- `tanstack-router` [Link](./tanstack-router/SKILL.md) - TanStack Router patterns for this repo — file-based routing, auth guards, search params, data loading, TanStack Query integration, navigation, and code splitting. Use when creating routes, adding pages, implementing auth flows, working with search/path params, or integrating loaders with TanStack Query.
+TBD
+
+### FE - Vite-based projects
+
+- `tanstack-router` [Link](./fe/tanstack-router/SKILL.md) - TanStack Router patterns for this repo — file-based routing, auth guards, search params, data loading, TanStack Query integration, navigation, and code splitting. Use when creating routes, adding pages, implementing auth flows, working with search/path params, or integrating loaders with TanStack Query.
   ```bash
-  npx skills@latest add Phenomenon-Studio/phenomenon-skills/tanstack-router
+  npx skills@latest add Phenomenon-Studio/phenomenon-skills/fe/tanstack-router
   ```
 
-### Next.js-based projects
+### FE - Next.js-based projects
 
 - `next-best-practices` [Link]([./next-best-practices/SKILL.md](https://github.com/vercel-labs/next-skills/tree/main/skills/next-best-practices)) - Agent skills for common Next.js workflows.
   ```bash
   npx skills add vercel-labs/next-skills --skill next-best-practices
   ```
 
-### Shadcn/UI-based projects
+### FE - Shadcn/UI-based projects
 
-- `shadcn` [Link](./shadcn/SKILL.md) - Shadcn/UI patterns for this repo — adding, searching, fixing, debugging, styling, and composing UI. Use when creating or adding components, searching for components, fixing styling issues, debugging components, styling components, or composing UI.
+- `shadcn` [Link](./fe/shadcn/SKILL.md) - Shadcn/UI patterns for this repo — adding, searching, fixing, debugging, styling, and composing UI. Use when creating or adding components, searching for components, fixing styling issues, debugging components, styling components, or composing UI.
   ```bash
-  npx skills@latest add Phenomenon-Studio/phenomenon-skills/shadcn
+  npx skills@latest add Phenomenon-Studio/phenomenon-skills/fe/shadcn
   ```
 
 ### Quality and security
 
-- `npm-audit-install` [Link](./npm-audit-install/SKILL.md) - Audit npm packages for security vulnerabilities before installing them using npq. Use when user wants to install a new npm package, add a dependency, audit a package for security issues, or check if a package is safe.
+- `npm-audit-install` [Link](./common/npm-audit-install/SKILL.md) - Audit npm packages for security vulnerabilities before installing them using npq. Use when user wants to install a new npm package, add a dependency, audit a package for security issues, or check if a package is safe.
   ```bash
-  npx skills@latest add Phenomenon-Studio/phenomenon-skills/npm-audit-install
+  npx skills@latest add Phenomenon-Studio/phenomenon-skills/common/npm-audit-install
   ```
-- `web-security` [Link](./web-security/SKILL.md) - Enforce web security and avoid security vulnerabilities.
+- `web-security` [Link](./fe/web-security/SKILL.md) - Enforce web security and avoid security vulnerabilities.
   ```bash
-  npx skills@latest add Phenomenon-Studio/phenomenon-skills/web-security
+  npx skills@latest add Phenomenon-Studio/phenomenon-skills/fe/web-security
   ```
 
 ### Tooling and Meta
