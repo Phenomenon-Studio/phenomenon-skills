@@ -130,6 +130,10 @@ TBD
   ```bash
   npx skills@latest add Phenomenon-Studio/phenomenon-skills/common/npm-audit-install
   ```
+- `npm-audit-update` [Link](./common/npm-audit-update/SKILL.md) - Check project dependencies for available updates, audit each candidate for security, and safely update package.json and reinstall. Use when the user wants to update dependencies, check for outdated packages, upgrade versions, or refresh a lockfile safely. Complements npm-audit-install (single-package installs).
+  ```bash
+  npx skills@latest add Phenomenon-Studio/phenomenon-skills/common/npm-audit-update
+  ```
 - `web-security` [Link](./fe/web-security/SKILL.md) - Enforce web security and avoid security vulnerabilities.
   ```bash
   npx skills@latest add Phenomenon-Studio/phenomenon-skills/fe/web-security
