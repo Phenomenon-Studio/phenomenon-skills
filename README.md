@@ -20,6 +20,18 @@ Skills are organized into the following categories:
 - **Quality and security**
 - **Tooling and Meta**
 
+
+## Getting started
+
+YOu are able to add multiple skills at once by using the `npx skills@latest add` command.
+  ```bash
+  npx skills@latest add Phenomenon-Studio/phenomenon-skills
+  ```
+  This will show the multi-selection menu of skills to add.
+
+To add a single skill, you can use the `npx skills@latest add Phenomenon-Studio/phenomenon-skills/<skill-name>` command.
+
+
 ## CLAUDE.md
 
 The root CLAUDE.md file defines project-level instructions that override default AI behavior. Prefer [progressive disclosure](https://www.humanlayer.dev/blog/writing-a-good-claude-md) for this file. It sets:
@@ -101,7 +113,10 @@ Work the issues/feature out to give the output to implementation skills.
 
 ### BE - Common 
 
-TBD
+- `swagger-to-md` [Link](./be/swagger-to-md/SKILL.md) - Fetch a remote Swagger/OpenAPI (v2 or v3) spec from a URL and emit a directory of Markdown files (one per tag) documenting all endpoints, parameters, request payloads, and responses. Refs are inlined; request bodies are rendered as example JSON payloads. Use when user wants to convert a Swagger/OpenAPI URL to Markdown, document a remote API, snapshot endpoints from a backend, or asks "swagger to md" / "openapi to markdown".
+  ```bash
+  npx skills@latest add Phenomenon-Studio/phenomenon-skills/be/swagger-to-md
+  ```
 
 ### FE - Vite-based projects
 
