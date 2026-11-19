@@ -8,14 +8,14 @@
   },
   "plugins": [
     {
-      "name": "common",
+      "name": "phenomenon-common",
       "description": "Skills common to all projects",
       "source": "./",
       "strict": false,
       "skills": ["./common/triage-audit", "./common/triage-feedback"]
     },
     {
-      "name": "frontend",
+      "name": "phenomenon-frontend",
       "description": "Skills for FE projects",
       "source": "./",
       "strict": false,
@@ -32,7 +32,7 @@
       ]
     },
     {
-      "name": "backend",
+      "name": "phenomenon-backend",
       "description": "Skills for BE projects",
       "source": "./",
       "strict": false,

@@ -31,7 +31,7 @@ You are able to add multiple skills at once by using the `npx skills@latest add`
 
 To add a single skill, you can use the `npx skills@latest add Phenomenon-Studio/phenomenon-skills/<skill-name>` command.
 
-The selection menu groups skills by the plugins declared in `.claude-plugin/marketplace.json` (`Common`, `Frontend`, `Backend`). When adding a new skill, list its folder under the matching plugin's `skills` array — otherwise it shows up under `Other`.
+The selection menu groups skills by the plugins declared in `.claude-plugin/marketplace.json` (`Phenomenon Common`, `Phenomenon Frontend`, `Phenomenon Backend`). When adding a new skill, list its folder under the matching plugin's `skills` array — otherwise it shows up under `Other`.
 
 ### Install via Claude Code plugin marketplace
 
@@ -43,21 +43,32 @@ The same manifest makes this repo a Claude Code plugin marketplace. Run these in
     ```
 2. Install the plugins you need:
     ```
-    /plugin install common@phenomenon-skills
+    /plugin install phenomenon-common@phenomenon-skills
     ```
     ```
-    /plugin install frontend@phenomenon-skills
+    /plugin install phenomenon-frontend@phenomenon-skills
     ```
     ```
-    /plugin install backend@phenomenon-skills
+    /plugin install phenomenon-backend@phenomenon-skills
     ```
 
 Or from the terminal, in one step (adds the marketplace if missing):
 ```bash
-claude plugin install frontend --marketplace Phenomenon-Studio/phenomenon-skills
+claude plugin install phenomenon-frontend --marketplace Phenomenon-Studio/phenomenon-skills
 ```
 
-Plugin skills are namespaced, e.g. `/frontend:react`. Update with `/plugin marketplace update phenomenon-skills`.
+Plugin skills are namespaced, e.g. `/phenomenon-frontend:react`. Update with `/plugin marketplace update phenomenon-skills`.
+
+### Install for Codex
+
+Use the `skills` CLI with the `codex` agent — skills are copied into `.agents/skills/` (add `-g` for `~/.agents/skills/`):
+```bash
+npx skills@latest add Phenomenon-Studio/phenomenon-skills -a codex
+```
+Single skill:
+```bash
+npx skills@latest add Phenomenon-Studio/phenomenon-skills -a codex --skill react
+```
 
 
 ## CLAUDE.md
