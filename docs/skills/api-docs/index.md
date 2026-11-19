@@ -2,7 +2,7 @@
 title: API docs
 description: Turn a backend's Swagger/OpenAPI spec into agent-readable Markdown.
 sidebar:
-  order: 6
+  order: 7
 ---
 
 For frontends integrating with a backend. Snapshot the API into Markdown files the agent can read instead of guessing endpoints.

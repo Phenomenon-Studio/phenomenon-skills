@@ -2,7 +2,7 @@
 title: Triage
 description: Turn client feedback, QA tickets and audits into engineer-ready verdicts and fix plans.
 sidebar:
-  order: 7
+  order: 8
 ---
 
 Entry point for incoming feedback. Each point gets checked against the codebase and a verdict (valid, invalid, needs approval, needs data) with root cause and fix plan.
@@ -29,6 +29,8 @@ flowchart TD
   file:line, command, or commit`"]
   tickets --> build["Build stage"]:::exit
 ```
+
+Questions for the client and the reply itself go through [Client communication](../client/index.md).
 
 Every verdict cites evidence a reader can re-check — `file:line`, a command with its output, or a commit — so the client gets an answer either way.
 

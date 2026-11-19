@@ -95,7 +95,7 @@ export default defineConfig({
         baseUrl: 'https://github.com/Phenomenon-Studio/phenomenon-skills/edit/main/docs/',
       },
       sidebar: [
-        { label: 'Guides', items: ['getting-started', 'workflow', 'authoring'] },
+        { label: 'Guides', items: ['getting-started', 'workflow', 'design', 'clients', 'authoring'] },
         { label: 'Skills', items: skillGroups },
       ],
     }),

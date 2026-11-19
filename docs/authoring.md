@@ -2,7 +2,7 @@
 title: Authoring skills
 description: Skill anatomy, where new skills go, and how the docs stay in sync.
 sidebar:
-  order: 3
+  order: 5
 ---
 
 ## How skills activate

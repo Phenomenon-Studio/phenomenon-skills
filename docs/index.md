@@ -18,5 +18,7 @@ hero:
 
 - **[Getting started](./getting-started.md)** — install a base set for every project, then add skills per stack.
 - **[Workflow](./workflow.md)** — how we work with agents, built on Matt Pocock's skills.
-- **Skill groups** — [Dependencies](./skills/dependencies/index.md), [Security](./skills/security/index.md), [React core](./skills/react-core/index.md), [TanStack](./skills/tanstack/index.md), [UI kit](./skills/ui-kit/index.md), [API docs](./skills/api-docs/index.md), [Triage](./skills/triage/index.md).
+- **[Design](./design.md)** — design and motion skills for UI work, built on Emil Kowalski's skills.
+- **Skill groups** — [Dependencies](./skills/dependencies/index.md), [Security](./skills/security/index.md), [React core](./skills/react-core/index.md), [TanStack](./skills/tanstack/index.md), [UI kit](./skills/ui-kit/index.md), [Design QA](./skills/design-qa/index.md), [API docs](./skills/api-docs/index.md), [Triage](./skills/triage/index.md), [Client communication](./skills/client/index.md).
+- **[Working with clients](./clients.md)** — answer clients in product terms, turn open points into decisions, keep engineers understanding what ships.
 - **[Authoring skills](./authoring.md)** — add a skill and keep the docs in sync.

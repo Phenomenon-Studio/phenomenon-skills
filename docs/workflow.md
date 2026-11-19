@@ -93,9 +93,11 @@ flowchart TD
 | Review | [`code-review`](https://github.com/mattpocock/skills/tree/main/skills/engineering/code-review) | Standards + spec review |
 | Ship | [`pr`](https://github.com/mattpocock/skills/tree/main/skills/engineering/pr) | PR body with evidence |
 
-Feedback or audit coming in? Start with our [`triage-feedback`](./skills/triage/triage-feedback.md) / [`triage-audit`](./skills/triage/triage-audit.md) → verdicts with fix plans → `/to-tickets` → continue from **Build**.
+Feedback or audit coming in? Start with our [`triage-feedback`](./skills/triage/triage-feedback.md) / [`triage-audit`](./skills/triage/triage-audit.md) → verdicts with fix plans → `/to-tickets` → continue from **Build**. Points that need the client's call, and the message back to them, are covered in [Working with clients](./clients.md).
 
 Large or parallel work: [`implement-spec`](https://github.com/mattpocock/skills/tree/main/skills/engineering/implement-spec) (parallel subagents on one branch) and [`wayfinder`](https://github.com/mattpocock/skills/tree/main/skills/engineering/wayfinder) (map of decision tickets).
+
+UI work follows the same loop with [design skills](./design.md) added: `emil-design-eng` while building, and `review-animations` next to `code-review` when the change touches motion.
 
 Run `tsc` and lint after every change — the cheapest feedback loop there is.
 
