@@ -17,7 +17,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "cd \"$CLAUDE_PROJECT_DIR\" && npm run fix:prettier 2>/dev/null || true"
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" && pnpm run fix:prettier 2>/dev/null || true"
           }
         ]
       }
@@ -29,9 +29,10 @@
   "permissions": {
     "allow": [
       "Read(/.env.local.example)",
-      "Bash(npm run *)",
-      "Bash(* --version)",
-      "Bash(* --help *)"
+      "Bash(pnpm run *)",
+      "Bash(node --version)",
+      "Bash(pnpm --version)",
+      "Bash(git --version)"
     ],
     "deny": [
       "Read(*.env*)",
