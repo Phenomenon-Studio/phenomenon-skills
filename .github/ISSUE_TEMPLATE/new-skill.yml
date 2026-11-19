@@ -1,0 +1,57 @@
+name: New skill proposal
+description: Propose a new skill or group before writing it.
+title: "[skill] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Needed for a new group, a skill that replaces another, or a change to the install layers. Small skills can go straight to a pull request — see [Contributing](https://phenomenon-studio.github.io/phenomenon-skills/contributing/).
+  - type: input
+    id: name
+    attributes:
+      label: Skill name
+      description: kebab-case; becomes the folder name.
+      placeholder: figma-qa
+    validations:
+      required: true
+  - type: input
+    id: group
+    attributes:
+      label: Group
+      description: An existing folder under skills/, or a new one (say why below).
+      placeholder: design-qa
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What agents get wrong today without this skill. Examples help.
+    validations:
+      required: true
+  - type: textarea
+    id: triggers
+    attributes:
+      label: When should it load?
+      description: The situations that should trigger it — this becomes the "Use when …" part of the description.
+    validations:
+      required: true
+  - type: dropdown
+    id: invocation
+    attributes:
+      label: Invocation
+      options:
+        - Model-invoked — the agent applies it on its own
+        - User-invoked — someone types /skill-name
+    validations:
+      required: true
+  - type: checkboxes
+    id: checked
+    attributes:
+      label: Checked
+      options:
+        - label: No upstream skill covers it (Matt Pocock, Emil Kowalski, Modern Web Guidance, …)
+          required: true
+        - label: No existing skill here could be extended instead
+          required: true

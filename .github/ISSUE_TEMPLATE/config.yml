@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Contributing guide
+    url: https://phenomenon-studio.github.io/phenomenon-skills/contributing/
+    about: What belongs here, the skill rules, and how pull requests are reviewed.

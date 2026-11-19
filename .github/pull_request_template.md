@@ -1,31 +1,35 @@
+<!-- Generated from .github/PULL_REQUEST_TEMPLATE/update.md by scripts/build-docs.mjs — edit that file. -->
+<!--
+  Update template: fixes and improvements to existing skills, docs, site, tooling, CI.
+  Adding a new skill? Switch to the new-skill template:
+  add `&template=new-skill.md` to this page's URL (`?template=new-skill.md` if it has no `?`),
+  or run `gh pr create --template new-skill.md`.
+-->
+
 ## What
 
-<!-- One or two sentences: the skill (or change) and the problem it solves. -->
+<!-- One or two sentences: what changed. -->
+
+## Why
+
+<!-- The problem it fixes or the reason for the change. Link the issue: Closes #… -->
 
 ## Type
 
-- [ ] New skill
 - [ ] Skill fix / improvement
 - [ ] External skill recommendation (docs only)
-- [ ] Docs / site / tooling
+- [ ] Docs / site
+- [ ] Tooling / CI
 
-## How it was tried
+## How it was checked
 
-<!-- Project and prompt you ran it with, whether it loaded when expected, and what the agent produced. -->
+<!-- Commands you ran, pages you previewed. Changed a skill's behaviour? The project and prompt you ran it with, and what the agent produced. -->
 
 ## Checklist
 
-See [Contributing → Review checklist](https://phenomenon-studio.github.io/phenomenon-skills/contributing/#review-checklist). The **Check** CI workflow (`pnpm lint` + docs check) covers trigger, naming, size, links and secrets — the rest is on you and the reviewer.
-
-- [ ] **Trigger** — `description` says what and when; no overlap with another skill
-- [ ] **Invocation** — `user-invocable: false` set or omitted on purpose
-- [ ] **Size** — `SKILL.md` under ~100 lines; detail in reference files
-- [ ] **Ours** — studio convention, not covered by the model or an upstream skill
-- [ ] **Self-contained** — no web lookups needed; scripts deterministic, no secrets
+- [ ] **Check** — `pnpm lint` has no errors (any warning explained above); `node scripts/build-docs.mjs` run and committed
+- [ ] **Skill changed?** — still loads when it should and follows the [review checklist](https://phenomenon-studio.github.io/phenomenon-skills/contributing/#review-checklist); tried in a real session
+- [ ] **Install layers changed?** — [Getting started](https://phenomenon-studio.github.io/phenomenon-skills/getting-started/) updated
 - [ ] **Clean** — no client names, credentials, internal URLs or project data
-- [ ] **Tried** — run in a real session (see above)
-- [ ] **Lint** — `pnpm lint` has no errors; any warning is explained under **How it was tried**
-- [ ] **Docs** — `node scripts/build-docs.mjs` run and committed; Getting started updated if needed
-- [ ] **Credit** — source and license named if adapted
 
 <!-- Not applicable? Tick it and say why. -->
