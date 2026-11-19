@@ -15,48 +15,20 @@ This project wraps TanStack Form into a 4-layer composition:
 3. **Hook Factory** — `createFormHook()` → `useAppForm`, `withForm`, `withFieldGroup`
 4. **Form Instances** — `useAppForm({ validators, defaultValues, onSubmit })`
 
-See [REFERENCE.md](REFERENCE.md) for full file paths, all registered field components, and advanced patterns.
-
 ## Quick Start — Creating a Form
 
 **Key patterns:**
 
+- Zod schema per form in `schemas.ts`, passed to `validators.onSubmit` (not a resolver); custom messages via the `error` callback, checking `iss.input` to tell "required" from "invalid"
 - `form.AppField` provides pre-registered field components (`field.InputField`, `field.FormFieldWrapper`, etc.)
 - `form.Field` provides raw field state for custom rendering, array fields, or conditional logic
-- `form.Subscribe` observes form state reactively (submit button, global errors)
-- Zod schema passed to `validators.onSubmit` (not a resolver)
-- `FormFieldWrapper` is a **registered field component** — use via `field.FormFieldWrapper` inside `form.AppField`, not as a standalone import
-- `FormFieldWrapper` reads `useFieldContext()` → `field.state.meta.errors` → `getFieldErrorMessage()` and renders label + input + error message using project's `Field`, `FieldLabel`, `FieldError` UI components
+- `form.Subscribe` observes form state reactively (submit button `canSubmit` / `isSubmitting`, global errors)
 - For API error mapping, use `formApi.setErrorMap()` in mutation `onError`
 - For focusing first invalid field on submit, use `focusFirstError()` in `onSubmitInvalid`
 
 ```tsx
-// 1. Define schema (src/components/YourForm/schemas.ts)
-import { z } from 'zod';
-
-export const yourSchema = z.object({
-    name: z.string().min(1, {
-        error() {
-            return 'This field is required';
-        },
-    }),
-    email: z.email({
-        error(iss) {
-            if (!iss.input) {
-                return 'This field is required';
-            }
-
-            return 'Invalid email';
-        },
-    }),
-});
-
-// 2. Create form instance in your component
-import { focusFirstError } from '@/lib/utils/focusFirstError';
-import { useAppForm } from '@/components/Form';
-
 const form = useAppForm({
-    defaultValues: { name: '', email: '' },
+    defaultValues: { name: '' },
     validators: { onSubmit: yourSchema },
     onSubmit({ value }) {
         /* handle submit */
@@ -66,15 +38,7 @@ const form = useAppForm({
     },
 });
 
-// 3. Render with form.AppField + field.FormFieldWrapper
-<form
-    id="your-form"
-    noValidate={true}
-    onSubmit={(e) => {
-        e.preventDefault();
-        form.handleSubmit();
-    }}
->
+<form id="your-form" noValidate={true} onSubmit={(e) => { e.preventDefault(); form.handleSubmit(); }}>
     <FieldSet>
         <FieldGroup>
             <form.AppField
@@ -87,34 +51,13 @@ const form = useAppForm({
                     );
                 }}
             />
-            <form.AppField
-                name="email"
-                children={(field) => {
-                    return (
-                        <field.FormFieldWrapper label="Email">
-                            <field.InputField placeholder="Enter email" type="email" />
-                        </field.FormFieldWrapper>
-                    );
-                }}
-            />
-            <Field>
-                <form.Subscribe
-                    selector={(state) => {
-                        return [state.canSubmit, state.isSubmitting];
-                    }}
-                    children={([canSubmit, isSubmitting]) => {
-                        return (
-                            <Button type="submit" disabled={!canSubmit} isLoading={isSubmitting}>
-                                Submit
-                            </Button>
-                        );
-                    }}
-                />
-            </Field>
+            {/* submit button: <Field> + form.Subscribe */}
         </FieldGroup>
     </FieldSet>
 </form>
 ```
+
+Full runnable form with imports, schema and submit button: [Minimal Working Form](REFERENCE.md#minimal-working-form); schema patterns: [Zod Schema Patterns](REFERENCE.md#zod-schema-patterns).
 
 ## form.AppField vs form.Field
 
@@ -134,31 +77,11 @@ const form = useAppForm({
 
 ## FormFieldWrapper — Error Tracking
 
-`FormFieldWrapper` is a **registered field component**. Access it via `field.FormFieldWrapper` inside `form.AppField`. It:
-
-1. Calls `useFieldContext()` to access field errors
-2. Extracts the first error string via `getFieldErrorMessage(field.state.meta.errors)`
-3. Generates a unique ID via `${field.name}${field.form.formId}`
-4. Renders using project UI components: `Field` (wrapper with `data-invalid`), `FieldLabel`, and `FieldError`
-
-**Props:**
-
-- `label` — label text (renders `FieldLabel`); if omitted, no label is rendered
-- `labelClassName` — CSS class for the label element
-- `className` — wrapper CSS class
-- `children` — the field input component(s)
+`FormFieldWrapper` is a **registered field component** — use it as `field.FormFieldWrapper` inside `form.AppField`, never as a standalone import. It reads the field's first error via `useFieldContext()` + `getFieldErrorMessage()` and renders `Field` (with `data-invalid`) > `FieldLabel` + children + `FieldError`. Props: `label` (no label if omitted), `labelClassName`, `className`, `children`. Internals: [FormFieldWrapper](REFERENCE.md#formfieldwrapper--error-tracking-wrapper).
 
 ## Layout Helpers
 
-Use the project's existing UI Field layout components for form structure:
-
-- `FieldSet` — wraps a form section (`<fieldset>`)
-- `FieldGroup` — groups fields together with consistent gap
-- `FieldLegend` — section legend/title
-- `FieldSeparator` — visual separator between field groups
-- `FieldDescription` — helper text below fields
-
-Import from `@/components/ui/Field`.
+Structure forms with the project's UI Field components from `@/components/ui/Field`: `FieldSet` (section `<fieldset>`), `FieldGroup` (fields with consistent gap), `FieldLegend` (section title), `FieldSeparator` (between groups), `FieldDescription` (helper text below a field).
 
 ## Workflow Checklist
 
@@ -173,11 +96,4 @@ Import from `@/components/ui/Field`.
 
 ## Advanced
 
-See [REFERENCE.md](REFERENCE.md) for:
-
-- All registered field components and their props
-- `withForm` / `withFieldGroup` composition
-- `form.Subscribe` for reactive state
-- Array field patterns (editable tables)
-- Custom field component creation guide
-- API error handling with `formApi.setErrorMap()`
+Read [REFERENCE.md](REFERENCE.md) for the project's file paths, and before building anything beyond a flat form: all registered field components and their props, `withForm` / `withFieldGroup` composition, `form.Subscribe` patterns, array fields (editable tables), nested forms, creating a custom field component, and API error handling with `formApi.setErrorMap()`.
