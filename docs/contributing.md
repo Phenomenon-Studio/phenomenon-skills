@@ -21,6 +21,7 @@ Anyone at the studio can add or improve a skill. A skill earns its place when it
 - **Check upstream.** If [Matt Pocock's skills](https://github.com/mattpocock/skills), [Emil Kowalski's skills](https://github.com/emilkowalski/skills), [Modern Web Guidance](https://developer.chrome.com/docs/modern-web-guidance) or another maintained skill already covers it, recommend that one instead.
 - **Check this repo.** Extend an existing skill when the new material shares its trigger; add a new skill when it has its own.
 - **Big change? Open an issue first.** A new group, a skill that replaces another, or a change to the install layers — describe the problem and the proposed skill before writing it. Fixes and small skills go straight to a pull request.
+- **Issues:** [New issue](https://github.com/Phenomenon-Studio/phenomenon-skills/issues/new/choose) offers two forms — **New skill proposal** and **Skill update** (a problem with a skill, or an improvement).
 
 ## Skill rules
 
@@ -62,7 +63,14 @@ Fix the problem rather than silencing the rule — don't add `<!-- eslint-disabl
 
 5. **Preview the site** if you touched `docs/`: `cd site && pnpm install && pnpm dev`.
 6. **Commit** with [Conventional Commits](https://www.conventionalcommits.org/): `feat(skills): add figma-qa`, `fix(react): …`, `docs: …`.
-7. **Open a pull request.** The template asks for the checklist below; fill every item or say why it doesn't apply.
+7. **Open a pull request** with the template that fits, and fill every checklist item or say why it doesn't apply:
+
+   | Template | For | Pick it |
+   | --- | --- | --- |
+   | `update.md` (default) | Fixes and improvements to existing skills, docs, site, tooling, CI | Opens automatically |
+   | `new-skill.md` | A new skill | Add `&template=new-skill.md` to the pull request page's URL (`?template=new-skill.md` if it has no `?`) |
+
+   GitHub's web UI has no template picker for pull requests — only the URL parameter. From the terminal, `gh pr create` asks which template to use, or pass `--template new-skill.md`.
 
 ## Review checklist
 

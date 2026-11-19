@@ -5,7 +5,8 @@
 //   (hand-written notes after the block stay);
 // - the catalog in README.md;
 // - the skills array of the Claude Code plugin in .claude-plugin/marketplace.json;
-// - CONTRIBUTING.md at the root, from docs/contributing.md (GitHub links to it from pull requests).
+// - CONTRIBUTING.md at the root, from docs/contributing.md (GitHub links to it from pull requests);
+// - .github/pull_request_template.md, from .github/PULL_REQUEST_TEMPLATE/update.md.
 // Usage: node scripts/build-docs.mjs [--check]
 //   --check  exit 1 if any generated section is out of date (for CI).
 
@@ -18,6 +19,10 @@ const REPO = 'Phenomenon-Studio/phenomenon-skills';
 const DOCS_DIR = join(ROOT, 'docs', 'skills');
 const MARKETPLACE = join(ROOT, '.claude-plugin', 'marketplace.json');
 const CONTRIBUTING_SOURCE = join(ROOT, 'docs', 'contributing.md');
+// GitHub's web UI fills new pull requests from the default template; `gh pr create` only offers
+// the ones in PULL_REQUEST_TEMPLATE/. The default is a copy so both show the update template.
+const PR_TEMPLATE_SOURCE = join(ROOT, '.github', 'PULL_REQUEST_TEMPLATE', 'update.md');
+const PR_TEMPLATE = join(ROOT, '.github', 'pull_request_template.md');
 const PLUGIN = 'phenomenon';
 const START = '<!-- skills:start -->';
 const END = '<!-- skills:end -->';
@@ -221,6 +226,11 @@ stale =
     },
     { creatable: true },
   )) || stale;
+const prTemplate = `<!-- Generated from .github/PULL_REQUEST_TEMPLATE/update.md by scripts/build-docs.mjs — edit that file. -->\n${await readFile(PR_TEMPLATE_SOURCE, 'utf8')}`;
+stale =
+  (await sync(PR_TEMPLATE, () => {
+    return prTemplate;
+  })) || stale;
 
 if (check && stale) {
   console.error('Run `node scripts/build-docs.mjs` and commit the result.');

@@ -130,7 +130,7 @@ Copy the skill folder into a real project's `.claude/skills/` (or `.agents/skill
    node scripts/build-docs.mjs
    ```
 
-   This rewrites, from frontmatter and folders: the skill list in the group's `index.md`, one page per skill at `docs/skills/<group>/<skill-name>.md` (created if missing; title is the skill name; hand-written notes go after `<!-- skills:end -->` and are kept), the catalog in `README.md`, and the `phenomenon` plugin's `skills` array in `.claude-plugin/marketplace.json` (so Claude Code plugin installs include the new skill), and the root `CONTRIBUTING.md` from `docs/contributing.md`. Never edit these by hand — CI runs `--check` and fails if they are stale.
+   This rewrites, from frontmatter and folders: the skill list in the group's `index.md`, one page per skill at `docs/skills/<group>/<skill-name>.md` (created if missing; title is the skill name; hand-written notes go after `<!-- skills:end -->` and are kept), the catalog in `README.md`, and the `phenomenon` plugin's `skills` array in `.claude-plugin/marketplace.json` (so Claude Code plugin installs include the new skill), the root `CONTRIBUTING.md` from `docs/contributing.md`, and the default `.github/pull_request_template.md` from `.github/PULL_REQUEST_TEMPLATE/update.md`. Never edit these by hand — CI runs `--check` and fails if they are stale.
 3. If the skill belongs in a recommended install step, add it to [Getting started](./getting-started.md).
 4. Preview the site: `cd site && pnpm install && pnpm dev`.
 

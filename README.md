@@ -54,7 +54,8 @@ scripts/build-docs.mjs            regenerates skill lists and CONTRIBUTING.md
 eslint-plugins/                   custom ESLint plugins; skills.mjs lints skills (`pnpm lint`, editor, CI)
 site/                             Astro Starlight site, deployed to GitHub Pages
 CONTRIBUTING.md                   generated from docs/contributing.md
-.github/pull_request_template.md  pull request checklist
+.github/PULL_REQUEST_TEMPLATE/    pull request templates: update.md (default), new-skill.md
+.github/ISSUE_TEMPLATE/           issue forms: new skill proposal, skill update
 ```
 
 Adding or changing a skill: see [Contributing](CONTRIBUTING.md) for the process and review checklist, and [Authoring skills](docs/authoring.md) for how to write one.

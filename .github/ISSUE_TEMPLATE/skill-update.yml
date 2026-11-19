@@ -1,0 +1,30 @@
+name: Skill update
+description: Report a problem with an existing skill or suggest an improvement.
+title: "[update] "
+body:
+  - type: input
+    id: skill
+    attributes:
+      label: Skill
+      description: Name of the skill, or "docs" / "tooling".
+      placeholder: tanstack-form
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind
+      options:
+        - Wrong or outdated guidance
+        - Loads when it shouldn't / doesn't load when it should
+        - Improvement
+        - Docs, site or tooling
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: What happened, or what should change
+      description: For agent behaviour, include the prompt and what the agent produced.
+    validations:
+      required: true
