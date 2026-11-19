@@ -23,7 +23,7 @@ Skills are organized into the following categories:
 
 ## Getting started
 
-YOu are able to add multiple skills at once by using the `npx skills@latest add` command.
+You are able to add multiple skills at once by using the `npx skills@latest add` command.
   ```bash
   npx skills@latest add Phenomenon-Studio/phenomenon-skills
   ```
@@ -64,28 +64,26 @@ skill-name/
 
 ## Planning & design
 
-Work the issues/feature out to give the output to implementation skills.
+Work the issue/feature out before implementation. Planning is covered by [Matt Pocock's skills](https://github.com/mattpocock/skills) — use them for the common **grill → spec → tickets → implement** loop (see [Feature/Issue Development lifecycle](#featureissue-development-lifecycle)).
 
-- `grill-me` [Link](https://github.com/mattpocock/skills/tree/main/grill-me) - Get relentlessly interviewed about a plan or design until every branch of the decision tree is resolved.
-  ```bash
-  npx skills@latest add mattpocock/skills/grill-me
-  ```
-- `to-prd` [Link](./common/to-prd/SKILL.md) - Turn the current conversation context into a PRD and submit it as a Markdown file. Use when user wants to create a PRD from the current context.
-  ```bash
-  npx skills@latest add Phenomenon-Studio/phenomenon-skills/common/to-prd
-  ```
-- `to-issue` [Link](./common/to-issue/SKILL.md) -Break the PRD or conversation context into independently-grabbable Markdown files using tracer-bullet vertical slices. Use when user wants to convert a prd into issues, create implementation plan, or break down conversation context into issue or issues.
-  ```bash
-  npx skills@latest add Phenomenon-Studio/phenomenon-skills/common/to-issue
-  ```
-- `do-work` [Link](./common/do-work/SKILL.md) - Execute a complete unit of work: plan it, build it, validate it. Use when user wants to do work, build a feature, fix a bug, or implement the issue
-  ```bash
-  npx skills@latest add Phenomenon-Studio/phenomenon-skills/common/do-work
-  ```
-- `zoom-out` [Link](https://github.com/mattpocock/skills/tree/main/zoom-out) - Zoom out and give broader context or a higher-level perspective. Use when you're unfamiliar with a section of code or need to understand how it fits into the bigger picture.
-  ```bash
-  npx skills@latest add mattpocock/skills/zoom-out
-  ```
+Install them once (Claude Code plugin, updates itself):
+```bash
+claude plugin install mattpocock-skills@claude-plugins-official
+```
+Or as editable files for any other agent (include `setup-matt-pocock-skills` when asked):
+```bash
+npx skills@latest add mattpocock/skills
+```
+Then run `/setup-matt-pocock-skills` once per repo — it configures the issue tracker, triage labels, and where docs are saved.
+
+Skills used in the loop:
+- `grill-with-docs` [Link](https://github.com/mattpocock/skills/tree/main/skills/engineering/grill-with-docs) - Grilling session that also builds the project's domain model, updating `GLOSSARY.md` and ADRs inline. Use `grill-me` [Link](https://github.com/mattpocock/skills/tree/main/skills/productivity/grill-me) for non-code plans.
+- `to-spec` [Link](https://github.com/mattpocock/skills/tree/main/skills/engineering/to-spec) - Turn the current conversation into a spec and publish it to the issue tracker.
+- `to-tickets` [Link](https://github.com/mattpocock/skills/tree/main/skills/engineering/to-tickets) - Break a plan, spec, or conversation into tracer-bullet tickets with blocking edges.
+- `implement` [Link](https://github.com/mattpocock/skills/tree/main/skills/engineering/implement) - Build the work from a spec or tickets, driving `tdd` at agreed seams and closing out with `code-review`. For a whole spec on one branch with parallel subagents, use `implement-spec` [Link](https://github.com/mattpocock/skills/tree/main/skills/engineering/implement-spec).
+- `code-review` [Link](https://github.com/mattpocock/skills/tree/main/skills/engineering/code-review) - Two-axis review of the diff: Standards and Spec.
+
+Other useful ones: `tdd`, `diagnosing-bugs`, `prototype`, `wayfinder` (work too big for one session), `handoff`, `improve-codebase-architecture`. Full list in the [repo README](https://github.com/mattpocock/skills#reference).
 
 ## Implementation
 
@@ -102,7 +100,7 @@ Work the issues/feature out to give the output to implementation skills.
   ```bash
   npx skills@latest add Phenomenon-Studio/phenomenon-skills/fe/accessible-html-jsx
   ```
-- `tanstack-query` [Link](./fe/tansatck-query/SKILL.md) - TanStack Query patterns for this repo — queryOptions/mutationOptions factories, query key hierarchies, service layer integration, optimistic updates, Suspense usage, error handling, and TanStack Router data loading. Use when creating queries, mutations, API services, query keys, cache invalidation, optimistic updates, or integrating data fetching with routes.
+- `tanstack-query` [Link](./fe/tanstack-query/SKILL.md) - TanStack Query patterns for this repo — queryOptions/mutationOptions factories, query key hierarchies, service layer integration, optimistic updates, Suspense usage, error handling, and TanStack Router data loading. Use when creating queries, mutations, API services, query keys, cache invalidation, optimistic updates, or integrating data fetching with routes.
   ```bash
   npx skills@latest add Phenomenon-Studio/phenomenon-skills/fe/tanstack-query
   ```
@@ -124,14 +122,14 @@ Work the issues/feature out to give the output to implementation skills.
   ```bash
   npx skills@latest add Phenomenon-Studio/phenomenon-skills/fe/tanstack-router
   ```
-- `generate-browserslist` [Link](./fe/generate-browserlist-config/SKILL.md) - Generate a project-wide browserslist configuration that is compatible with every declared dependency's own browserslist settings by intersecting the supported browser sets, then sync the result to Vite's build.target. Use when the user wants to create, update, or audit the `browserslist` field / `.browserslistrc`, keep Vite's `build.target` in lockstep with it, ensure dependency compatibility, or debug "unsupported target" build warnings.
+- `generate-browserslist` [Link](./fe/generate-browserslist/SKILL.md) - Generate a project-wide browserslist configuration that is compatible with every declared dependency's own browserslist settings by intersecting the supported browser sets, then sync the result to Vite's build.target. Use when the user wants to create, update, or audit the `browserslist` field / `.browserslistrc`, keep Vite's `build.target` in lockstep with it, ensure dependency compatibility, or debug "unsupported target" build warnings.
   ```bash
   npx skills@latest add Phenomenon-Studio/phenomenon-skills/fe/generate-browserslist
   ```
 
 ### FE - Next.js-based projects
 
-- `next-best-practices` [Link]([./next-best-practices/SKILL.md](https://github.com/vercel-labs/next-skills/tree/main/skills/next-best-practices)) - Agent skills for common Next.js workflows.
+- `next-best-practices` [Link](https://github.com/vercel-labs/next-skills/tree/main/skills/next-best-practices) - Agent skills for common Next.js workflows.
   ```bash
   npx skills add vercel-labs/next-skills --skill next-best-practices
   ```
@@ -145,13 +143,13 @@ Work the issues/feature out to give the output to implementation skills.
 
 ### Quality and security
 
-- `npm-audit-install` [Link](./common/npm-audit-install/SKILL.md) - Audit npm packages for security vulnerabilities before installing them using npq. Use when user wants to install a new npm package, add a dependency, audit a package for security issues, or check if a package is safe.
+- `triage-feedback` [Link](./common/triage-feedback/SKILL.md) - Triage a short piece of feedback into an engineer-ready report — claim, verdict, root cause, fix options, plan, guardrail. Use when the user pastes or points at client feedback, a QA ticket, or another agent's review finding.
   ```bash
-  npx skills@latest add Phenomenon-Studio/phenomenon-skills/common/npm-audit-install
+  npx skills@latest add Phenomenon-Studio/phenomenon-skills/common/triage-feedback
   ```
-- `npm-audit-update` [Link](./common/npm-audit-update/SKILL.md) - Check project dependencies for available updates, audit each candidate for security, and safely update package.json and reinstall. Use when the user wants to update dependencies, check for outdated packages, upgrade versions, or refresh a lockfile safely. Complements npm-audit-install (single-package installs).
+- `triage-audit` [Link](./common/triage-audit/SKILL.md) - Triage an audit — a document listing many feedback points from a client, QA, or an auditor agent — into a summary report plus per-point verdicts checked against the codebase. Use for multi-item audits; for one point, use `triage-feedback`.
   ```bash
-  npx skills@latest add Phenomenon-Studio/phenomenon-skills/common/npm-audit-update
+  npx skills@latest add Phenomenon-Studio/phenomenon-skills/common/triage-audit
   ```
 - `web-security` [Link](./fe/web-security/SKILL.md) - Enforce web security and avoid security vulnerabilities.
   ```bash
@@ -160,23 +158,25 @@ Work the issues/feature out to give the output to implementation skills.
 
 ### Tooling and Meta
 
-- `write-a-skill` [Link](https://github.com/mattpocock/skills/blob/main/write-a-skill/SKILL.md) - Create new agent skills with proper structure, progressive disclosure, and bundled resources. Use when user wants to create, write, or build a new skill.
-  ```bash
-  npx skills@latest add mattpocock/skills/write-a-skill
-  ```
+- `writing-for-agents` [Link](https://github.com/mattpocock/skills/tree/main/skills/productivity/writing-for-agents) - Write documents for agents: skills, AGENTS.md/CLAUDE.md, and any doc an agent reaches by a pointer. Use when creating or editing skills. Included in the Matt Pocock skills install above.
 
 ## Feature/Issue Development lifecycle
 
+Uses [Matt Pocock's skills](https://github.com/mattpocock/skills) for the loop; project skills (`react`, `typescript`, `tanstack-*`, …) load automatically during implementation.
+
 ```
-Idea → PRD → Issue → Phase Implementation → Validation → Review
-   │       │       │           │                  │           │
-   │       │       │           │                  │           └─ /code-review
-   │       │       │           │                  └─ npm run tsc + lint
-   │       │       │           └─ /do-work (per issue)
-   │       │       └─ /to-issue
-   │       └─ /to-prd
-   └─ /grill-me (optional, at any stage)
+Idea → Grill → Spec → Tickets → Implement (per ticket) → Validation → Review
+  │       │       │        │              │                   │           │
+  │       │       │        │              │                   │           └─ /code-review
+  │       │       │        │              │                   └─ npm run tsc + lint
+  │       │       │        │              └─ /implement  (or /implement-spec for whole spec)
+  │       │       │        └─ /to-tickets
+  │       │       └─ /to-spec
+  │       └─ /grill-with-docs  (or /grill-me)
+  └─ /setup-matt-pocock-skills (once per repo)
 ```
+
+Feedback/audit entry point: `/triage-feedback` or `/triage-audit` → verdicts with fix plans → `/to-tickets` → continue the loop from **Implement**.
 
 ## Context Management Recommendations
 
@@ -184,7 +184,7 @@ Idea → PRD → Issue → Phase Implementation → Validation → Review
 |----------|-----|
 | Start phases in fresh conversations | Each plan phase is self-contained. A fresh conversation avoids accumulated context from prior phases polluting decision-making. |
 | Reference plans by file path, not paste | Say "implement Phase 3 from `./plans/user-onboarding.md`" instead of pasting the plan. The AI reads only what it needs. |
-| Keep PRDs in Local files | PRDs stored as snapshots don't consume context until explicitly fetched and contain only partitions needed and are AI-readable. |
+| Keep specs in the issue tracker or local files | Specs stored as snapshots don't consume context until explicitly fetched and contain only partitions needed and are AI-readable. |
 | Use /grill-me in a separate conversation | Design interviews generate long back-and-forth. Do this before implementation, in its own context. |
 | Let skills handle library knowledge | Don't paste TanStack docs into the conversation — skills already encode project-specific patterns. The `DocsExplorer` subagent handles anything not covered. |
 | One concern per conversation | Don't mix a bug fix with a feature implementation. Each gets its own context. |
