@@ -48,6 +48,8 @@ flowchart LR
 | Review | [`code-review`](https://github.com/mattpocock/skills/tree/main/skills/engineering/code-review) | Standards + spec review |
 | Ship | [`pr`](https://github.com/mattpocock/skills/tree/main/skills/engineering/pr) | PR body with evidence |
 
+Feedback or audit coming in? Start with our [`triage-feedback` / `triage-audit`](./skills/triage.md) → verdicts with fix plans → `/to-tickets` → continue from **Build**.
+
 Large or parallel work: [`implement-spec`](https://github.com/mattpocock/skills/tree/main/skills/engineering/implement-spec) (parallel subagents on one branch) and [`wayfinder`](https://github.com/mattpocock/skills/tree/main/skills/engineering/wayfinder) (map of decision tickets).
 
 Run `tsc` and lint after every change — the cheapest feedback loop there is.

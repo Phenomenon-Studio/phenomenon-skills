@@ -1,6 +1,7 @@
 #!/usr/bin/env node
-// Regenerates the skill lists in docs/skills/<group>.md and the catalog in README.md
-// from each skills/<group>/<skill>/SKILL.md frontmatter.
+// Regenerates, from each skills/<group>/<skill>/SKILL.md frontmatter:
+// the skill lists in docs/skills/<group>.md, the catalog in README.md, and the
+// skills array of the Claude Code plugin in .claude-plugin/marketplace.json.
 // Usage: node scripts/build-docs.mjs [--check]
 //   --check  exit 1 if any generated section is out of date (for CI).
 
@@ -13,6 +14,8 @@ const REPO = 'Phenomenon-Studio/phenomenon-skills';
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const SKILLS_DIR = join(ROOT, 'skills');
 const DOCS_DIR = join(ROOT, 'docs', 'skills');
+const MARKETPLACE = join(ROOT, '.claude-plugin', 'marketplace.json');
+const PLUGIN = 'phenomenon';
 const START = '<!-- skills:start -->';
 const END = '<!-- skills:end -->';
 
@@ -110,13 +113,30 @@ const replaceBlock = (source, body, file) => {
   return `${source.slice(0, start + START.length)}\n${body}\n${source.slice(end)}`;
 };
 
-const sync = async (file, body) => {
+const updatePluginSkills = (source, groups, file) => {
+  const marketplace = JSON.parse(source);
+  const plugin = marketplace.plugins?.find((entry) => {
+    return entry.name === PLUGIN;
+  });
+  if (!plugin) {
+    throw new Error(`${file}: plugin "${PLUGIN}" not found`);
+  }
+  plugin.skills = groups.flatMap(({ skills }) => {
+    return skills.map((skill) => {
+      return `./${skill.path}`;
+    });
+  });
+  return `${JSON.stringify(marketplace, null, 2)}\n`;
+};
+
+// transform(current, name) returns the file's expected content.
+const sync = async (file, transform) => {
   const name = relative(ROOT, file);
   if (!existsSync(file)) {
-    throw new Error(`${name}: page missing — create it with ${START} / ${END} markers`);
+    throw new Error(`${name}: missing — group pages need ${START} / ${END} markers`);
   }
   const current = await readFile(file, 'utf8');
-  const next = replaceBlock(current, body, name);
+  const next = transform(current, name);
   if (current === next) {
     return false;
   }
@@ -131,10 +151,19 @@ const sync = async (file, body) => {
 
 const groups = await loadGroups();
 let stale = false;
+const withBlock = (body) => {
+  return (source, name) => {
+    return replaceBlock(source, body, name);
+  };
+};
 for (const group of groups) {
-  stale = (await sync(join(DOCS_DIR, `${group.group}.md`), renderGroup(group))) || stale;
+  stale = (await sync(join(DOCS_DIR, `${group.group}.md`), withBlock(renderGroup(group)))) || stale;
 }
-stale = (await sync(join(ROOT, 'README.md'), renderCatalog(groups))) || stale;
+stale = (await sync(join(ROOT, 'README.md'), withBlock(renderCatalog(groups)))) || stale;
+stale =
+  (await sync(MARKETPLACE, (source, name) => {
+    return updatePluginSkills(source, groups, name);
+  })) || stale;
 
 if (check && stale) {
   console.error('Run `node scripts/build-docs.mjs` and commit the result.');

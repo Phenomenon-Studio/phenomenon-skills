@@ -1,0 +1,33 @@
+{
+  "name": "phenomenon-skills",
+  "owner": {
+    "name": "Phenomenon Studio"
+  },
+  "metadata": {
+    "description": "Phenomenon Studio agent skills"
+  },
+  "plugins": [
+    {
+      "name": "phenomenon",
+      "description": "Phenomenon Studio skills",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/api-docs/swagger-to-md",
+        "./skills/dependencies/generate-browserslist",
+        "./skills/dependencies/pnpm-audit-install",
+        "./skills/dependencies/pnpm-audit-update",
+        "./skills/react-core/accessible-html-jsx",
+        "./skills/react-core/react",
+        "./skills/react-core/typescript",
+        "./skills/security/web-security",
+        "./skills/tanstack/tanstack-form",
+        "./skills/tanstack/tanstack-query",
+        "./skills/tanstack/tanstack-router",
+        "./skills/triage/triage-audit",
+        "./skills/triage/triage-feedback",
+        "./skills/ui-kit/shadcn"
+      ]
+    }
+  ]
+}

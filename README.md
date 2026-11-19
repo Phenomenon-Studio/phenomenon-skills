@@ -6,6 +6,14 @@ Agent skills used across Phenomenon Studio projects: our own project conventions
 
 ## Quick start
 
+Claude Code — all skills as one plugin (run as `/phenomenon:<skill>`):
+
+```bash
+claude plugin install phenomenon --marketplace Phenomenon-Studio/phenomenon-skills
+```
+
+Any agent — pick skills with the `skills` CLI:
+
 ```bash
 # pick skills from an interactive list
 npx skills@latest add Phenomenon-Studio/phenomenon-skills
@@ -26,6 +34,7 @@ For the recommended base setup and per-stack add-ons, follow [Getting started](d
 | [react-core](docs/skills/react-core.md) | `accessible-html-jsx`, `react`, `typescript` |
 | [security](docs/skills/security.md) | `web-security` |
 | [tanstack](docs/skills/tanstack.md) | `tanstack-form`, `tanstack-query`, `tanstack-router` |
+| [triage](docs/skills/triage.md) | `triage-audit`, `triage-feedback` |
 | [ui-kit](docs/skills/ui-kit.md) | `shadcn` |
 <!-- skills:end -->
 
@@ -37,6 +46,7 @@ Workflow skills (grilling, specs, tickets, TDD, code review) come from [Matt Poc
 skills/<group>/<skill>/SKILL.md   skills, grouped by purpose
 docs/                             documentation (rendered by the site)
 docs/skills/<group>.md            one page per group; skill lists are generated
+.claude-plugin/marketplace.json   Claude Code plugin manifest; skills list is generated
 claude-config/                    Claude Code project template: settings, hooks, commands
 scripts/build-docs.mjs            regenerates skill lists from SKILL.md frontmatter
 site/                             Astro Starlight site, deployed to GitHub Pages

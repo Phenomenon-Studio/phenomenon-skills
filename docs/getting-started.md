@@ -7,7 +7,31 @@ sidebar:
 
 Install in layers: a **base** every project gets, a **frontend base** for web UIs, then **stack add-ons** only when the project uses that stack. Fewer skills means less for the agent to choose between — install only what the project needs.
 
-All commands run from the project root. `npx skills` detects your agent (Claude Code, Cursor, Codex, …) and installs into its skills folder; add `-a <agent>` to choose explicitly or `-g` to install globally.
+All commands run from the project root.
+
+## Two ways to install our skills
+
+**Claude Code plugin — all skills at once.** One `phenomenon` plugin bundles every skill in this repo. Run in a Claude Code session, one line at a time:
+
+```text
+/plugin marketplace add Phenomenon-Studio/phenomenon-skills
+/plugin install phenomenon@phenomenon-skills
+/reload-plugins
+```
+
+Or from the terminal:
+
+```bash
+claude plugin install phenomenon --marketplace Phenomenon-Studio/phenomenon-skills
+```
+
+Skills run as `/phenomenon:<skill>`, e.g. `/phenomenon:react`. Update with `/plugin marketplace update phenomenon-skills`. With the plugin, skip the `Phenomenon-Studio/phenomenon-skills` commands below — you only need the external skills (Matt Pocock, Modern Web Guidance, Next.js).
+
+**`skills` CLI — pick per project, any agent.** The layered steps below. `npx skills` detects your agent (Claude Code, Cursor, Codex, …) and installs into its skills folder; add `-a <agent>` to choose explicitly or `-g` to install globally. For Codex, skills land in `.agents/skills/`:
+
+```bash
+npx skills@latest add Phenomenon-Studio/phenomenon-skills -a codex --skill react
+```
 
 ## 1. Base — every project
 
