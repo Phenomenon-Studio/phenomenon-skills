@@ -7,20 +7,16 @@ sidebar:
 
 Background rules (model-invoked) that keep the agent away from common web vulnerabilities. Recommended for **every** web project.
 
+**Role in the lifecycle:** **Build** and **Review**, model-invoked: the rules apply while code is written and again when `code-review` reads the diff.
+
 <!-- skills:start -->
+## Skills
+
+- [`web-security`](./web-security.md) — Enforce web security and avoid security vulnerabilities.
+
 Install the whole group:
 
 ```bash
 npx skills@latest add Phenomenon-Studio/phenomenon-skills --skill web-security
 ```
-
-### `web-security`
-
-Enforce web security and avoid security vulnerabilities.
-
-```bash
-npx skills@latest add Phenomenon-Studio/phenomenon-skills --skill web-security
-```
-
-[Source](https://github.com/Phenomenon-Studio/phenomenon-skills/tree/main/skills/security/web-security)
 <!-- skills:end -->

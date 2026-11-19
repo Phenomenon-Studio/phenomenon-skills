@@ -25,18 +25,63 @@ Skills come in two kinds:
 
 A user-invoked skill may call model-invoked ones, never another user-invoked one.
 
+## Starting a session
+
+New piece of work and not sure which skill to reach for? Size the risk first.
+
+```mermaid
+flowchart TD
+  start["New piece of work"]:::entry --> tiny{{Diff tiny?}}
+  tiny -- yes --> oneshot["`**One shot**
+  skip alignment, review the diff after`"]
+  tiny -- no --> grill["`**/grill-with-docs**
+  align first, firm up domain language`"]
+  grill --> bigger{{Bigger than you thought?}}
+  bigger -- yes --> wayfinder["`**/wayfinder**
+  turn the grilling into a map`"]
+  bigger -- no --> keep["Keep grilling, then build"]:::exit
+```
+
+- **Tiny diff** — you can review it quickly and retrying costs almost nothing. Let the agent go, then align on the result.
+- **Not tiny** — run [`grill-with-docs`](https://github.com/mattpocock/skills/tree/main/skills/engineering/grill-with-docs) before building.
+- **Bigger than expected** — the grilling drifts or the fog keeps growing: switch to [`wayfinder`](https://github.com/mattpocock/skills/tree/main/skills/engineering/wayfinder) and work from its map.
+
 ## Feature lifecycle
 
 ```mermaid
-flowchart LR
-  idea([Idea]) --> grill["/grill-with-docs<br/>align + glossary"]
-  grill --> spec["/to-spec<br/>write the spec"]
-  spec --> tickets["/to-tickets<br/>vertical slices"]
-  tickets --> impl["/implement<br/>per ticket"]
-  impl --> tdd["tdd<br/>red → green → refactor"]
-  tdd --> review["code-review<br/>standards + spec"]
-  review --> pr["pr<br/>PR body"]
-  review -. fix .-> impl
+flowchart TD
+  idea["Idea"]:::entry --> plan
+  feedback["Feedback or audit"]:::entry --> triage["`**triage-feedback / triage-audit**
+  verdicts + fix plans`"]:::ours
+
+  subgraph plan ["01 · Plan"]
+    direction LR
+    grill["`**/grill-with-docs**
+    align + glossary`"] --> spec["`**/to-spec**
+    write the spec`"]
+  end
+
+  plan --> tickets["`**/to-tickets**
+  vertical slices`"]
+  triage --> tickets
+  tickets --> size{{Parallel?}}
+  size -- no --> build
+  size -- yes --> implSpec["`**/implement-spec**
+  parallel subagents`"]
+
+  subgraph build ["02 · Build"]
+    direction LR
+    impl["`**/implement**
+    per ticket`"] --> tdd["`**tdd**
+    red → green → refactor`"]
+  end
+
+  build --> review["`**code-review**
+  standards + spec`"]
+  implSpec --> review
+  review --> pass{{Pass?}}
+  pass -- fix --> build
+  pass -- yes --> pr["Pull request"]:::exit
 ```
 
 | Stage | Skill | Output |
@@ -48,9 +93,11 @@ flowchart LR
 | Review | [`code-review`](https://github.com/mattpocock/skills/tree/main/skills/engineering/code-review) | Standards + spec review |
 | Ship | [`pr`](https://github.com/mattpocock/skills/tree/main/skills/engineering/pr) | PR body with evidence |
 
-Feedback or audit coming in? Start with our [`triage-feedback` / `triage-audit`](./skills/triage.md) → verdicts with fix plans → `/to-tickets` → continue from **Build**.
+Feedback or audit coming in? Start with our [`triage-feedback`](./skills/triage/triage-feedback.md) / [`triage-audit`](./skills/triage/triage-audit.md) → verdicts with fix plans → `/to-tickets` → continue from **Build**. Points that need the client's call, and the message back to them, are covered in [Working with clients](./clients.md).
 
 Large or parallel work: [`implement-spec`](https://github.com/mattpocock/skills/tree/main/skills/engineering/implement-spec) (parallel subagents on one branch) and [`wayfinder`](https://github.com/mattpocock/skills/tree/main/skills/engineering/wayfinder) (map of decision tickets).
+
+UI work follows the same loop with [design skills](./design.md) added: `emil-design-eng` while building, and `review-animations` next to `code-review` when the change touches motion.
 
 Run `tsc` and lint after every change — the cheapest feedback loop there is.
 
