@@ -8,11 +8,34 @@
   },
   "plugins": [
     {
+      "name": "phenomenon-skills",
+      "description": "All Phenomenon Studio skills (common, frontend, backend)",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./common/triage-audit",
+        "./common/triage-feedback",
+        "./fe/accessible-html-jsx",
+        "./fe/generate-browserslist",
+        "./fe/react",
+        "./fe/shadcn",
+        "./fe/tanstack-form",
+        "./fe/tanstack-query",
+        "./fe/tanstack-router",
+        "./fe/typescript",
+        "./fe/web-security",
+        "./be/swagger-to-md"
+      ]
+    },
+    {
       "name": "phenomenon-common",
       "description": "Skills common to all projects",
       "source": "./",
       "strict": false,
-      "skills": ["./common/triage-audit", "./common/triage-feedback"]
+      "skills": [
+        "./common/triage-audit",
+        "./common/triage-feedback"
+      ]
     },
     {
       "name": "phenomenon-frontend",
@@ -36,7 +59,9 @@
       "description": "Skills for BE projects",
       "source": "./",
       "strict": false,
-      "skills": ["./be/swagger-to-md"]
+      "skills": [
+        "./be/swagger-to-md"
+      ]
     }
   ]
 }
