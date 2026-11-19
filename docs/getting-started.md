@@ -13,7 +13,7 @@ All commands run from the project root.
 
 **Claude Code plugin — all skills at once.** One `phenomenon` plugin bundles every skill in this repo. Run in a Claude Code session, one line at a time:
 
-```text
+```claude
 /plugin marketplace add Phenomenon-Studio/phenomenon-skills
 /plugin install phenomenon@phenomenon-skills
 /reload-plugins
@@ -25,13 +25,34 @@ Or from the terminal:
 claude plugin install phenomenon --marketplace Phenomenon-Studio/phenomenon-skills
 ```
 
-Skills run as `/phenomenon:<skill>`, e.g. `/phenomenon:react`. Update with `/plugin marketplace update phenomenon-skills`. With the plugin, skip the `Phenomenon-Studio/phenomenon-skills` commands below — you only need the external skills (Matt Pocock, Modern Web Guidance, Next.js).
+Skills run as `/phenomenon:<skill>`, e.g. `/phenomenon:react`. To get new and changed skills, see [Updating the plugin](#updating-the-plugin). With the plugin, skip the `Phenomenon-Studio/phenomenon-skills` commands below — you only need the external skills (Matt Pocock, Modern Web Guidance, Next.js).
 
 **`skills` CLI — pick per project, any agent.** The layered steps below. `npx skills` detects your agent (Claude Code, Cursor, Codex, …) and installs into its skills folder; add `-a <agent>` to choose explicitly or `-g` to install globally. For Codex, skills land in `.agents/skills/`:
 
 ```bash
 npx skills@latest add Phenomenon-Studio/phenomenon-skills -a codex --skill react
 ```
+
+### Updating the plugin
+
+Third-party marketplaces don't auto-update by default, so the plugin stays on the commit you installed until you update it. The plugin has no pinned version: every commit to `main` counts as a new version.
+
+From the terminal — refresh the marketplace, then update the plugin:
+
+```bash
+claude plugin marketplace update phenomenon-skills
+claude plugin update phenomenon@phenomenon-skills
+```
+
+Or in a Claude Code session: `/plugin` → **Marketplaces** → `phenomenon-skills` → **Update marketplace** (refreshes the list and updates the installed plugin). Then apply it to the running session:
+
+```claude
+/reload-plugins
+```
+
+A new session picks up the update without a reload.
+
+**Auto-update (recommended):** `/plugin` → **Marketplaces** → `phenomenon-skills` → turn auto-update on. Claude Code then checks in the background a few minutes after a session starts and tells you to run `/reload-plugins` when an update lands.
 
 ## 1. Base — every project
 
@@ -53,7 +74,7 @@ npx skills@latest add mattpocock/skills
 
 Then run once per repo:
 
-```text
+```claude
 /setup-matt-pocock-skills
 ```
 
@@ -65,7 +86,7 @@ Then run once per repo:
 npx skills@latest add Phenomenon-Studio/phenomenon-skills --skill pnpm-audit-install pnpm-audit-update web-security
 ```
 
-See [Dependencies](./skills/dependencies.md) and [Security](./skills/security.md).
+See [Dependencies](./skills/dependencies/index.md) and [Security](./skills/security/index.md).
 
 ### 1.3 Claude Code project config (optional)
 
@@ -87,7 +108,7 @@ Keep `CLAUDE.md` short and point it at the README and `package.json` — [progre
 npx skills@latest add Phenomenon-Studio/phenomenon-skills --skill react typescript accessible-html-jsx
 ```
 
-See [React core](./skills/react-core.md).
+See [React core](./skills/react-core/index.md).
 
 ### 2.2 Modern Web Guidance (Google Chrome)
 
@@ -116,7 +137,7 @@ Add only the rows that match the project.
 | shadcn/ui | `npx skills@latest add Phenomenon-Studio/phenomenon-skills --skill shadcn` |
 | A backend with Swagger/OpenAPI | `npx skills@latest add Phenomenon-Studio/phenomenon-skills --skill swagger-to-md` |
 
-Details: [TanStack](./skills/tanstack.md), [UI kit](./skills/ui-kit.md), [API docs](./skills/api-docs.md), [Dependencies](./skills/dependencies.md).
+Details: [TanStack](./skills/tanstack/index.md), [UI kit](./skills/ui-kit/index.md), [API docs](./skills/api-docs/index.md), [Dependencies](./skills/dependencies/index.md).
 
 ## 4. Keep skills current
 

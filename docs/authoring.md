@@ -36,13 +36,27 @@ For writing guidance, install [`writing-for-agents`](https://github.com/mattpoco
 
 ## Adding a skill
 
-1. Put it in the group folder that matches its purpose: `skills/<group>/<skill-name>/SKILL.md`. New group? Also create `docs/skills/<group>.md` with frontmatter, an intro, and the markers `<!-- skills:start -->` / `<!-- skills:end -->`.
+1. Put it in the group folder that matches its purpose: `skills/<group>/<skill-name>/SKILL.md`. New group? Also create `docs/skills/<group>/index.md` with frontmatter (`title`, `description`, `sidebar.order`), an intro on what the group is for and where it sits in the [workflow](./workflow.md), and the markers `<!-- skills:start -->` / `<!-- skills:end -->`.
 2. Regenerate the docs:
 
    ```bash
    node scripts/build-docs.mjs
    ```
 
-   This rewrites, from frontmatter and folders: the skill list in the group page, the catalog in `README.md`, and the `phenomenon` plugin's `skills` array in `.claude-plugin/marketplace.json` (so Claude Code plugin installs include the new skill). Never edit these by hand — CI runs `--check` and fails if they are stale.
+   This rewrites, from frontmatter and folders: the skill list in the group's `index.md`, one page per skill at `docs/skills/<group>/<skill-name>.md` (created if missing; title is the skill name; hand-written notes go after `<!-- skills:end -->` and are kept), the catalog in `README.md`, and the `phenomenon` plugin's `skills` array in `.claude-plugin/marketplace.json` (so Claude Code plugin installs include the new skill). Never edit these by hand — CI runs `--check` and fails if they are stale.
 3. If the skill belongs in a recommended install step, add it to [Getting started](./getting-started.md).
 4. Preview the site: `cd site && pnpm install && pnpm dev`.
+
+## Diagrams
+
+Group pages and guides use [Mermaid](https://mermaid.js.org/syntax/flowchart.html) flowcharts. The site restyles them to match the brand, so use these shapes and classes, not inline `style` or `classDef`:
+
+| Element | Syntax |
+| --- | --- |
+| Step (skill name bold, output muted) | ``id["`**/to-spec**`` ↵ ``write the spec`"]`` |
+| Decision | `id{{Parallel?}}` |
+| Where the flow starts / what it ships | `:::entry` / `:::exit` |
+| A Phenomenon skill (orange outline) | `:::ours` |
+| Numbered stage | `subgraph id ["01 · Plan"]` with `direction LR` |
+
+Keep diagrams top-down (`flowchart TD`); put a horizontal row inside a stage. A subgraph keeps its `direction` only when edges connect to the subgraph itself, not to nodes inside it.

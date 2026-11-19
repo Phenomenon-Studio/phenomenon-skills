@@ -1,0 +1,284 @@
+/*
+ * Phenomenon Studio identity for Starlight.
+ * Tokens taken from phenomenonstudio.com (wp-content/themes/phnmn/assets/css/main.css):
+ * ink #080d10, orange #ff7a00, greys #f8f8f8 / #f0efef / #e9e9e9,
+ * Bricolage Grotesque for display, Albert Sans for text, 8px radius.
+ */
+
+:root {
+  --phen-orange: #ff7a00;
+  --phen-ink: #080d10;
+  --phen-radius: 8px;
+
+  --sl-font: 'Albert Sans', Arial, sans-serif;
+  --phen-font-display: 'Bricolage Grotesque', Arial, sans-serif;
+
+  /* Dark theme (Starlight default selector) */
+  --sl-color-accent-low: #3a1c00;
+  --sl-color-accent: var(--phen-orange);
+  --sl-color-accent-high: #ffb070;
+  --sl-color-text-accent: var(--phen-orange);
+
+  --sl-color-white: #ffffff;
+  --sl-color-gray-1: #f0efef;
+  --sl-color-gray-2: #c9cbcc;
+  --sl-color-gray-3: #8e9396;
+  --sl-color-gray-4: #4a5054;
+  --sl-color-gray-5: #272727;
+  --sl-color-gray-6: #121a1f;
+  --sl-color-black: var(--phen-ink);
+}
+
+:root[data-theme='light'] {
+  /* #ff7a00 on white is 2.6:1, so text uses a darker orange (5.05:1) */
+  --sl-color-accent-low: #ffe6cf;
+  --sl-color-accent: #b84f00;
+  --sl-color-accent-high: #6b2e00;
+  --sl-color-text-accent: #b84f00;
+
+  --sl-color-white: var(--phen-ink);
+  --sl-color-gray-1: #1f2122;
+  --sl-color-gray-2: #3a3f42;
+  --sl-color-gray-3: #5f6569;
+  --sl-color-gray-4: #9a9fa2;
+  --sl-color-gray-5: #e9e9e9;
+  --sl-color-gray-6: #f0efef;
+  --sl-color-gray-7: #f8f8f8;
+  --sl-color-black: #ffffff;
+}
+
+/* Display type */
+.site-title,
+.hero h1,
+.sl-markdown-content :is(h1, h2, h3, h4, h5, h6),
+h1#_top {
+  font-family: var(--phen-font-display);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.hero h1 {
+  font-weight: 440;
+  line-height: 1;
+}
+
+.site-title {
+  font-weight: 600;
+  color: var(--sl-color-white);
+}
+
+/* Buttons: brand pill — orange fill, ink text, uppercase tracking */
+.sl-link-button {
+  border-radius: var(--phen-radius);
+  font-family: var(--phen-font-display);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.875rem;
+}
+
+.sl-link-button.primary {
+  background: var(--phen-orange);
+  border-color: var(--phen-orange);
+  color: var(--phen-ink);
+}
+
+.sl-link-button.primary:hover {
+  background: var(--sl-color-white);
+  border-color: var(--sl-color-white);
+  color: var(--sl-color-black);
+}
+
+/* Rounded surfaces */
+.sl-markdown-content :is(.starlight-aside, table),
+.card,
+.sl-link-card {
+  border-radius: var(--phen-radius);
+}
+
+/* Links: thin, offset underline */
+.sl-markdown-content a:not(.sl-link-button, .sl-link-card *) {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+/*
+ * Mermaid diagrams, in the phenomenonstudio.com idiom: flat cards, hairline rules,
+ * uppercase tracked labels, no shadows or dashes, orange reserved for the outcome.
+ * Rendered with Mermaid's `base` theme and recolored here from Starlight tokens, so one
+ * render follows the light/dark toggle. Mermaid scopes its styles under the SVG id,
+ * so overrides need !important.
+ *
+ * Selectors target the SVG (`svg[id^='mermaid-']`), never `pre.mermaid svg`: Mermaid
+ * measures every label in a temporary SVG attached to <body>, so typography rules must
+ * match there too, or boxes get sized for text that looks different once placed.
+ * Rules that change text metrics (size, weight, case, tracking) may only use selectors
+ * present when the label is measured: element and class (`.node`, `.entry`), never :has().
+ *
+ * Diagram conventions (see docs/authoring.md):
+ *   node    ["`**skill-name**\nwhat it produces`"]   bold line = skill, second line muted
+ *   gate    {{QUESTION?}}                             decision
+ *   :::entry / :::exit                                where the flow starts / what it ships
+ *   :::ours                                           a Phenomenon skill (vs upstream)
+ *   subgraph id ["01 · Stage"]                        numbered lifecycle stage
+ */
+/* Contrast: card vs page, border vs card and edges vs page each stay clearly visible in both themes */
+svg[id^='mermaid-'] {
+  --dg-card: #161e23;
+  --dg-border: #4a5054;
+  --dg-stage: rgb(255 255 255 / 0.025);
+  --dg-line: #8e9396;
+  --dg-muted: #a9adb0;
+}
+
+:root[data-theme='light'] svg[id^='mermaid-'] {
+  --dg-card: #f0efef;
+  --dg-border: #b4b8bb;
+  --dg-stage: rgb(8 13 16 / 0.025);
+  --dg-line: #5f6569;
+  --dg-muted: #4a5054;
+}
+
+.sl-markdown-content pre.mermaid {
+  margin-block: 1.5rem;
+  padding: 2rem 1.25rem;
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: var(--phen-radius);
+  background: transparent;
+}
+
+.sl-markdown-content pre.mermaid:not([data-processed]) {
+  background: transparent;
+  color: transparent;
+}
+
+.sl-markdown-content svg[id^='mermaid-'] {
+  height: auto;
+}
+
+/* Safety net if a web font swaps in after measurement: overflow rather than clip */
+svg[id^='mermaid-'] foreignObject {
+  overflow: visible;
+}
+
+svg[id^='mermaid-'] :is(.node, .cluster-label, .edgeLabel) :is(span, p, div) {
+  font-family: var(--sl-font) !important;
+  line-height: 1.35 !important;
+}
+
+/* Cards */
+svg[id^='mermaid-'] .node :is(rect, path, polygon) {
+  fill: var(--dg-card) !important;
+  stroke: var(--dg-border) !important;
+  stroke-width: 1px !important;
+  filter: none !important;
+}
+
+svg[id^='mermaid-'] .node :is(g, .label-container) {
+  filter: none !important;
+}
+
+svg[id^='mermaid-'] .node rect {
+  rx: 8px;
+  ry: 8px;
+}
+
+svg[id^='mermaid-'] .node :is(span, p, div) {
+  color: var(--dg-muted) !important;
+  font-size: 13px;
+}
+
+svg[id^='mermaid-'] .node strong {
+  display: inline-block;
+  margin-bottom: 2px;
+  color: var(--sl-color-white) !important;
+  font-family: var(--phen-font-display);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* Phenomenon-owned skills: orange hairline */
+svg[id^='mermaid-'] .node.ours :is(rect, path) {
+  stroke: var(--sl-color-accent) !important;
+}
+
+/* Gates (decisions) */
+svg[id^='mermaid-'] .node polygon {
+  fill: var(--dg-card) !important;
+  stroke: var(--sl-color-accent) !important;
+  stroke-width: 1.5px !important;
+}
+
+/* Color only: Mermaid measures the label before it draws the polygon, so :has(polygon)
+   can't apply at measurement time and must not change size, weight or case */
+svg[id^='mermaid-'] .node:has(polygon) :is(span, p, div) {
+  color: var(--sl-color-white) !important;
+}
+
+/* Entry (inverse, like the site's secondary button) and exit (orange CTA) */
+svg[id^='mermaid-'] .node.entry :is(rect, path) {
+  fill: var(--sl-color-white) !important;
+  stroke: var(--sl-color-white) !important;
+}
+
+svg[id^='mermaid-'] .node.exit :is(rect, path) {
+  fill: var(--phen-orange) !important;
+  stroke: var(--phen-orange) !important;
+}
+
+svg[id^='mermaid-'] .node:is(.entry, .exit) :is(span, p, div, strong) {
+  color: var(--sl-color-black) !important;
+  font-family: var(--sl-font) !important;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+svg[id^='mermaid-'] .node.exit :is(span, p, div, strong) {
+  color: var(--phen-ink) !important;
+}
+
+/* Stages */
+svg[id^='mermaid-'] .cluster rect {
+  fill: var(--dg-stage) !important;
+  stroke: var(--dg-border) !important;
+  stroke-width: 1px !important;
+  rx: 8px;
+  ry: 8px;
+}
+
+svg[id^='mermaid-'] .cluster-label :is(span, p, div) {
+  color: var(--dg-muted) !important;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Edges */
+svg[id^='mermaid-'] :is(.flowchart-link, .edgePath path) {
+  stroke: var(--dg-line) !important;
+  stroke-width: 1.25px !important;
+}
+
+svg[id^='mermaid-'] :is(marker path, .arrowheadPath, .arrowMarkerPath) {
+  fill: var(--dg-line) !important;
+  stroke: var(--dg-line) !important;
+}
+
+svg[id^='mermaid-'] .edgeLabel,
+svg[id^='mermaid-'] .edgeLabel :is(rect, p, span, .labelBkg) {
+  background-color: var(--sl-color-black) !important;
+  fill: var(--sl-color-black) !important;
+}
+
+svg[id^='mermaid-'] .edgeLabel :is(span, p) {
+  color: var(--dg-muted) !important;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
