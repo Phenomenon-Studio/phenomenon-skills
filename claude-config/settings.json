@@ -30,8 +30,9 @@
     "allow": [
       "Read(/.env.local.example)",
       "Bash(npm run *)",
-      "Bash(* --version)",
-      "Bash(* --help *)"
+      "Bash(node --version)",
+      "Bash(pnpm --version)",
+      "Bash(git --version)"
     ],
     "deny": [
       "Read(*.env*)",
