@@ -1,10 +1,10 @@
 ---
 title: web-security
-description: "Enforce web security and avoid security vulnerabilities."
+description: "Enforce web security and avoid security vulnerabilities. Use when handling user input, rendering untrusted content, or adding dependencies."
 ---
 
 <!-- skills:start -->
-Enforce web security and avoid security vulnerabilities.
+Enforce web security and avoid security vulnerabilities. Use when handling user input, rendering untrusted content, or adding dependencies.
 
 **Model-invoked** — the agent loads it on its own when the task matches; hidden from the `/` menu.
 

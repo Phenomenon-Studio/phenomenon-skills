@@ -15,7 +15,7 @@ Pair them with Google Chrome's [Modern Web Guidance](https://developer.chrome.co
 ## Skills
 
 - [`accessible-html-jsx`](./accessible-html-jsx.md) — Write clean, modern, and highly accessible HTML & JSX code, using semantically correct elements and attributes. Use when writing or reviewing HTML/JSX markup, creating forms, handling ARIA attributes, building interactive widgets, or implementing keyboard navigation.
-- [`react`](./react.md) — Build clean, modern React components that apply common best practices and avoid common pitfalls like unnecessary state management or useEffect usage.
+- [`react`](./react.md) — Build clean, modern React components that apply common best practices and avoid common pitfalls like unnecessary state management or useEffect usage. Use when writing, refactoring, or reviewing React components and hooks.
 - [`typescript`](./typescript.md) — Write clean, efficient TypeScript code that follows project conventions and advanced type patterns. Use when writing or reviewing TypeScript code, defining types, creating generics, handling errors, or working with React components, Zod schemas, and TanStack libraries.
 
 Install the whole group:

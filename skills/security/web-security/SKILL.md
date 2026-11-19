@@ -1,6 +1,6 @@
 ---
 name: web-security
-description: Enforce web security and avoid security vulnerabilities.
+description: Enforce web security and avoid security vulnerabilities. Use when handling user input, rendering untrusted content, or adding dependencies.
 user-invocable: false
 ---
 

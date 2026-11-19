@@ -75,4 +75,4 @@ Always export the inferred type **above** the schema for colocation.
 
 ## Advanced Patterns
 
-For generics, conditional types, mapped types, template literals, discriminated unions, type guards, and repo-specific patterns see [REFERENCE.md](mdc:REFERENCE.md).
+For generics, conditional types, mapped types, template literals, discriminated unions, type guards, and repo-specific patterns see [REFERENCE.md](REFERENCE.md).
