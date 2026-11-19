@@ -25,7 +25,7 @@ Or from the terminal:
 claude plugin install phenomenon --marketplace Phenomenon-Studio/phenomenon-skills
 ```
 
-Skills run as `/phenomenon:<skill>`, e.g. `/phenomenon:react`. To get new and changed skills, see [Updating the plugin](#updating-the-plugin). With the plugin, skip the `Phenomenon-Studio/phenomenon-skills` commands below — you only need the external skills (Matt Pocock, Modern Web Guidance, Next.js).
+Skills run as `/phenomenon:<skill>`, e.g. `/phenomenon:react`. To get new and changed skills, see [Updating the plugin](#updating-the-plugin). With the plugin, skip the `Phenomenon-Studio/phenomenon-skills` commands below — you only need the external skills (Matt Pocock, Emil Kowalski, Modern Web Guidance, Next.js).
 
 **`skills` CLI — pick per project, any agent.** The layered steps below. `npx skills` detects your agent (Claude Code, Cursor, Codex, …) and installs into its skills folder; add `-a <agent>` to choose explicitly or `-g` to install globally. For Codex, skills land in `.agents/skills/`:
 
@@ -126,6 +126,16 @@ npx skills@latest add GoogleChrome/modern-web-guidance
 
 Without a configured Baseline target it defaults to **Baseline Widely available**. Other agents and options: [Get started with Modern Web Guidance](https://developer.chrome.com/docs/modern-web-guidance/get-started).
 
+### 2.3 Emil Kowalski's design skill
+
+Design and animation fundamentals, so the agent picks the right easing, shadows and spacing instead of generic defaults:
+
+```bash
+npx skills@latest add emilkowalski/skills --skill emil-design-eng
+```
+
+See [Design](./design.md).
+
 ## 3. Stack add-ons
 
 Add only the rows that match the project.
@@ -133,11 +143,12 @@ Add only the rows that match the project.
 | Project uses | Install |
 | --- | --- |
 | Vite + TanStack | `npx skills@latest add Phenomenon-Studio/phenomenon-skills --skill tanstack-query tanstack-router tanstack-form generate-browserslist` |
+| Animations, transitions or gestures | `npx skills@latest add emilkowalski/skills` (full set — see [Design](./design.md) for the `prototype` name clash with Matt Pocock's skills) |
 | Next.js | `npx skills@latest add vercel-labs/next-skills --skill next-best-practices` |
 | shadcn/ui | `npx skills@latest add Phenomenon-Studio/phenomenon-skills --skill shadcn` |
 | A backend with Swagger/OpenAPI | `npx skills@latest add Phenomenon-Studio/phenomenon-skills --skill swagger-to-md` |
 
-Details: [TanStack](./skills/tanstack/index.md), [UI kit](./skills/ui-kit/index.md), [API docs](./skills/api-docs/index.md), [Dependencies](./skills/dependencies/index.md).
+Details: [Design](./design.md), [TanStack](./skills/tanstack/index.md), [UI kit](./skills/ui-kit/index.md), [API docs](./skills/api-docs/index.md), [Dependencies](./skills/dependencies/index.md).
 
 ## 4. Keep skills current
 
