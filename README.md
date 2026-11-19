@@ -50,8 +50,20 @@ docs/                             documentation (rendered by the site)
 docs/skills/<group>.md            one page per group; skill lists are generated
 .claude-plugin/marketplace.json   Claude Code plugin manifest; skills list is generated
 claude-config/                    Claude Code project template: settings, hooks, commands
-scripts/build-docs.mjs            regenerates skill lists from SKILL.md frontmatter
+scripts/build-docs.mjs            regenerates skill lists and CONTRIBUTING.md
+eslint-plugins/                   custom ESLint plugins; skills.mjs lints skills (`pnpm lint`, editor, CI)
 site/                             Astro Starlight site, deployed to GitHub Pages
+CONTRIBUTING.md                   generated from docs/contributing.md
+.github/pull_request_template.md  pull request checklist
 ```
 
-Adding or changing a skill: see [Authoring skills](docs/authoring.md).
+Adding or changing a skill: see [Contributing](CONTRIBUTING.md) for the process and review checklist, and [Authoring skills](docs/authoring.md) for how to write one.
+
+Skills are linted against our skill rules (frontmatter, naming, trigger in the description, size, links, no secrets). Run it locally — your editor also underlines problems as you type:
+
+```bash
+pnpm install
+pnpm lint
+```
+
+CI runs the same lint on every pull request: errors block the merge, warnings need a fix or a reason in the PR. Details: [Contributing → Skill rules](CONTRIBUTING.md#skill-rules).

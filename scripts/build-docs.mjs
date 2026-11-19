@@ -4,20 +4,20 @@
 // - docs/skills/<group>/<skill>.md: frontmatter + generated block, created when missing
 //   (hand-written notes after the block stay);
 // - the catalog in README.md;
-// - the skills array of the Claude Code plugin in .claude-plugin/marketplace.json.
+// - the skills array of the Claude Code plugin in .claude-plugin/marketplace.json;
+// - CONTRIBUTING.md at the root, from docs/contributing.md (GitHub links to it from pull requests).
 // Usage: node scripts/build-docs.mjs [--check]
 //   --check  exit 1 if any generated section is out of date (for CI).
 
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { dirname, join, relative } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { ROOT, listSkillDirs, readFrontmatter } from './skills.mjs';
 
 const REPO = 'Phenomenon-Studio/phenomenon-skills';
-const ROOT = fileURLToPath(new URL('..', import.meta.url));
-const SKILLS_DIR = join(ROOT, 'skills');
 const DOCS_DIR = join(ROOT, 'docs', 'skills');
 const MARKETPLACE = join(ROOT, '.claude-plugin', 'marketplace.json');
+const CONTRIBUTING_SOURCE = join(ROOT, 'docs', 'contributing.md');
 const PLUGIN = 'phenomenon';
 const START = '<!-- skills:start -->';
 const END = '<!-- skills:end -->';
@@ -25,16 +25,9 @@ const END = '<!-- skills:end -->';
 const check = process.argv.includes('--check');
 
 const parseFrontmatter = (source, file) => {
-  const match = source.match(/^---\n([\s\S]*?)\n---/);
-  if (!match) {
+  const fields = readFrontmatter(source);
+  if (!fields) {
     throw new Error(`${file}: missing frontmatter`);
-  }
-  const fields = {};
-  for (const line of match[1].split('\n')) {
-    const pair = line.match(/^([\w-]+):\s*(.*)$/);
-    if (pair) {
-      fields[pair[1]] = pair[2].replace(/^(["'])(.*)\1$/, '$2');
-    }
   }
   if (!fields.name || !fields.description) {
     throw new Error(`${file}: frontmatter needs name and description`);
@@ -42,33 +35,20 @@ const parseFrontmatter = (source, file) => {
   return fields;
 };
 
-const listDirs = async (dir) => {
-  const entries = await readdir(dir, { withFileTypes: true });
-  return entries
-    .filter((entry) => {
-      return entry.isDirectory();
-    })
-    .map((entry) => {
-      return entry.name;
-    })
-    .sort();
-};
-
 const loadGroups = async () => {
   const groups = [];
-  for (const group of await listDirs(SKILLS_DIR)) {
+  for (const { group, skills: dirs } of await listSkillDirs()) {
     const skills = [];
-    for (const dir of await listDirs(join(SKILLS_DIR, group))) {
-      const file = join(SKILLS_DIR, group, dir, 'SKILL.md');
-      if (!existsSync(file)) {
-        continue;
+    for (const { path, file } of dirs) {
+      if (!file) {
+        throw new Error(`${path}: skill folder has no SKILL.md`);
       }
       const fields = parseFrontmatter(await readFile(file, 'utf8'), relative(ROOT, file));
       skills.push({
         name: fields.name,
         description: fields.description,
         userInvocable: fields['user-invocable'] !== 'false',
-        path: `skills/${group}/${dir}`,
+        path,
       });
     }
     groups.push({ group, skills });
@@ -159,6 +139,18 @@ const updatePluginSkills = (source, groups, file) => {
   return `${JSON.stringify(marketplace, null, 2)}\n`;
 };
 
+// The site page is the source; the root copy drops its frontmatter and points its
+// relative links (./page.md) at docs/ so they resolve from the repo root.
+const renderContributing = (source) => {
+  const match = source.match(/^---\n([\s\S]*?)\n---\n/);
+  const title = match?.[1].match(/^title:\s*(.+)$/m)?.[1].trim();
+  if (!title) {
+    throw new Error('docs/contributing.md: frontmatter needs a title');
+  }
+  const body = source.slice(match[0].length).replace(/\]\(\.\//g, '](docs/');
+  return `<!-- Generated from docs/contributing.md by scripts/build-docs.mjs — edit that file. -->\n\n# ${title}\n${body}`;
+};
+
 // transform(current, name) returns the file's expected content.
 // Files listed in `creatable` may be missing; they are created from transform('').
 const sync = async (file, transform, { creatable = false } = {}) => {
@@ -220,6 +212,15 @@ stale =
   (await sync(MARKETPLACE, (source, name) => {
     return updatePluginSkills(source, groups, name);
   })) || stale;
+const contributing = renderContributing(await readFile(CONTRIBUTING_SOURCE, 'utf8'));
+stale =
+  (await sync(
+    join(ROOT, 'CONTRIBUTING.md'),
+    () => {
+      return contributing;
+    },
+    { creatable: true },
+  )) || stale;
 
 if (check && stale) {
   console.error('Run `node scripts/build-docs.mjs` and commit the result.');
