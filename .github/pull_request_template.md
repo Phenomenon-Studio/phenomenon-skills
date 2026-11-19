@@ -15,7 +15,7 @@
 
 ## Checklist
 
-See [Contributing → Review checklist](https://phenomenon-studio.github.io/phenomenon-skills/contributing/#review-checklist). The **Check** CI workflow (`pnpm lint`) covers trigger, naming, size, links and secrets — the rest is on you and the reviewer.
+See [Contributing → Review checklist](https://phenomenon-studio.github.io/phenomenon-skills/contributing/#review-checklist). The **Check** CI workflow (`pnpm lint` + docs check) covers trigger, naming, size, links and secrets — the rest is on you and the reviewer.
 
 - [ ] **Trigger** — `description` says what and when; no overlap with another skill
 - [ ] **Invocation** — `user-invocable: false` set or omitted on purpose

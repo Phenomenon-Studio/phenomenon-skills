@@ -115,7 +115,7 @@ A skill folder without `SKILL.md` fails `node scripts/build-docs.mjs` instead �
 
 Nothing underlined? Restart the ESLint server (VS Code: *ESLint: Restart ESLint Server*; Zed: *editor: restart language server*) and compare with `pnpm lint`.
 
-**CI.** The **Check** workflow runs `pnpm lint` on every pull request and push to `main`. Errors fail it and block the merge; warnings pass but the reviewer asks you to fix or justify them — see [Errors and warnings](./contributing.md#errors-and-warnings).
+**CI.** The **Check** workflow runs on every pull request and push to `main`: two steps, **Lint skills** (`pnpm lint`) and **Check skill docs** (`node scripts/build-docs.mjs --check` — every skill has its docs page and the generated lists are current). Both run on every push, so one run reports problems from each. Errors fail it and block the merge; warnings pass but the reviewer asks you to fix or justify them — see [Errors and warnings](./contributing.md#errors-and-warnings).
 
 ## Trying it locally
 

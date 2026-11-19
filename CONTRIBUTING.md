@@ -77,4 +77,4 @@ Reviewers check every item. The pull request template carries the same list. Ite
 
 ## Merging
 
-Merge after one approving review and green CI — no lint errors, docs up to date; a new group or install-layer change also needs agreement in its issue first. After merge, plugin users get the change on their next update — see [Updating the plugin](docs/getting-started.md#updating-the-plugin).
+Merge after one approving review and a green **Check** workflow — its **Lint skills** step (no errors) and **Check skill docs** step (every skill has its page, generated files current); a new group or install-layer change also needs agreement in its issue first. After merge, plugin users get the change on their next update — see [Updating the plugin](docs/getting-started.md#updating-the-plugin).
