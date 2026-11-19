@@ -37,11 +37,17 @@ The selection menu groups skills by the plugins declared in `.claude-plugin/mark
 
 The same manifest makes this repo a Claude Code plugin marketplace. Run these inside a Claude Code session, one at a time.
 
+Adding the marketplace only registers it — it installs nothing. Install a plugin afterwards.
+
 1. Add the marketplace (once):
     ```
     /plugin marketplace add Phenomenon-Studio/phenomenon-skills
     ```
-2. Install the plugins you need:
+2. Install **all** skills:
+    ```
+    /plugin install phenomenon-skills@phenomenon-skills
+    ```
+    Or only the groups you need (don't combine with the all-in-one plugin — skills would load twice):
     ```
     /plugin install phenomenon-common@phenomenon-skills
     ```
@@ -51,13 +57,14 @@ The same manifest makes this repo a Claude Code plugin marketplace. Run these in
     ```
     /plugin install phenomenon-backend@phenomenon-skills
     ```
+3. Run `/reload-plugins` (or restart Claude Code) so the skills show up in autocomplete.
 
 Or from the terminal, in one step (adds the marketplace if missing):
 ```bash
-claude plugin install phenomenon-frontend --marketplace Phenomenon-Studio/phenomenon-skills
+claude plugin install phenomenon-skills --marketplace Phenomenon-Studio/phenomenon-skills
 ```
 
-Plugin skills are namespaced, e.g. `/phenomenon-frontend:react`. Update with `/plugin marketplace update phenomenon-skills`.
+Plugin skills are namespaced by plugin, e.g. `/phenomenon-skills:react` or `/phenomenon-frontend:react`. Update with `/plugin marketplace update phenomenon-skills`.
 
 ### Install for Codex
 
