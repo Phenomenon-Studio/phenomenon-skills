@@ -164,7 +164,7 @@ const sync = async (file, transform, { creatable = false } = {}) => {
     return false;
   }
   if (check) {
-    console.error(`out of date: ${name}`);
+    console.error(`${current ? 'out of date' : 'missing'}: ${name}`);
   } else {
     await mkdir(dirname(file), { recursive: true });
     await writeFile(file, next);
