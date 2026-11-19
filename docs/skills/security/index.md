@@ -12,7 +12,7 @@ Background rules (model-invoked) that keep the agent away from common web vulner
 <!-- skills:start -->
 ## Skills
 
-- [`web-security`](./web-security.md) — Enforce web security and avoid security vulnerabilities.
+- [`web-security`](./web-security.md) — Enforce web security and avoid security vulnerabilities. Use when handling user input, rendering untrusted content, or adding dependencies.
 
 Install the whole group:
 

@@ -1,0 +1,9 @@
+// Zed project settings. Runs the ESLint language server on Markdown so the skill rules
+// (eslint.config.mjs) show inline in skills/**/*.md. "..." keeps Zed's default servers.
+{
+  "languages": {
+    "Markdown": {
+      "language_servers": ["eslint", "..."]
+    }
+  }
+}

@@ -1,1 +1,6 @@
 .DS_Store
+node_modules/
+
+# JetBrains: share only the ESLint setup (lints skills/**/*.md)
+.idea/*
+!.idea/jsLinters/

@@ -1,6 +1,6 @@
 ---
 name: react
-description: Build clean, modern React components that apply common best practices and avoid common pitfalls like unnecessary state management or useEffect usage.
+description: Build clean, modern React components that apply common best practices and avoid common pitfalls like unnecessary state management or useEffect usage. Use when writing, refactoring, or reviewing React components and hooks.
 user-invocable: false
 ---
 
