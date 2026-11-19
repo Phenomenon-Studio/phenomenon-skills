@@ -1,0 +1,42 @@
+{
+  "name": "phenomenon-skills",
+  "owner": {
+    "name": "Phenomenon Studio"
+  },
+  "metadata": {
+    "description": "Phenomenon Studio agent skills"
+  },
+  "plugins": [
+    {
+      "name": "phenomenon-common",
+      "description": "Skills common to all projects",
+      "source": "./",
+      "strict": false,
+      "skills": ["./common/triage-audit", "./common/triage-feedback"]
+    },
+    {
+      "name": "phenomenon-frontend",
+      "description": "Skills for FE projects",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./fe/accessible-html-jsx",
+        "./fe/generate-browserslist",
+        "./fe/react",
+        "./fe/shadcn",
+        "./fe/tanstack-form",
+        "./fe/tanstack-query",
+        "./fe/tanstack-router",
+        "./fe/typescript",
+        "./fe/web-security"
+      ]
+    },
+    {
+      "name": "phenomenon-backend",
+      "description": "Skills for BE projects",
+      "source": "./",
+      "strict": false,
+      "skills": ["./be/swagger-to-md"]
+    }
+  ]
+}
