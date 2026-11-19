@@ -31,6 +31,34 @@ You are able to add multiple skills at once by using the `npx skills@latest add`
 
 To add a single skill, you can use the `npx skills@latest add Phenomenon-Studio/phenomenon-skills/<skill-name>` command.
 
+The selection menu groups skills by the plugins declared in `.claude-plugin/marketplace.json` (`Common`, `Frontend`, `Backend`). When adding a new skill, list its folder under the matching plugin's `skills` array — otherwise it shows up under `Other`.
+
+### Install via Claude Code plugin marketplace
+
+The same manifest makes this repo a Claude Code plugin marketplace. Run these inside a Claude Code session, one at a time.
+
+1. Add the marketplace (once):
+    ```
+    /plugin marketplace add Phenomenon-Studio/phenomenon-skills
+    ```
+2. Install the plugins you need:
+    ```
+    /plugin install common@phenomenon-skills
+    ```
+    ```
+    /plugin install frontend@phenomenon-skills
+    ```
+    ```
+    /plugin install backend@phenomenon-skills
+    ```
+
+Or from the terminal, in one step (adds the marketplace if missing):
+```bash
+claude plugin install frontend --marketplace Phenomenon-Studio/phenomenon-skills
+```
+
+Plugin skills are namespaced, e.g. `/frontend:react`. Update with `/plugin marketplace update phenomenon-skills`.
+
 
 ## CLAUDE.md
 
