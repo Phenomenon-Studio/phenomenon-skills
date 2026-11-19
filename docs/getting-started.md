@@ -49,7 +49,7 @@ See [Dependencies](./skills/dependencies.md) and [Security](./skills/security.md
 
 | File | Copy to | What it does |
 | --- | --- | --- |
-| `settings.json` | `.claude/settings.json` | Denies reading `.env*` files, allows `npm run *`, runs Prettier after every edit |
+| `settings.json` | `.claude/settings.json` | Denies reading `.env*` files, allows `pnpm run *`, runs Prettier after every edit |
 | `hooks/block-dangerous-git.sh` | `.claude/hooks/` | Blocks destructive git commands |
 | `commands/code-review.md` | `.claude/commands/` | `/code-review [BUGS,SECURITY,PERFORMANCE]` full-codebase review |
 

@@ -45,4 +45,4 @@ For writing guidance, install [`writing-for-agents`](https://github.com/mattpoco
 
    This rewrites the skill list in the group page and the catalog in `README.md` from frontmatter. Never edit between the markers by hand — CI runs `--check` and fails if they are stale.
 3. If the skill belongs in a recommended install step, add it to [Getting started](./getting-started.md).
-4. Preview the site: `cd site && npm install && npm run dev`.
+4. Preview the site: `cd site && pnpm install && pnpm dev`.
