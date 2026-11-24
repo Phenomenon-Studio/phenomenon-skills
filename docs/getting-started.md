@@ -146,9 +146,10 @@ Add only the rows that match the project.
 | Animations, transitions or gestures | `npx skills@latest add emilkowalski/skills` (full set — see [Design](./design.md) for the `prototype` name clash with Matt Pocock's skills) |
 | Next.js | `npx skills@latest add vercel-labs/next-skills --skill next-best-practices` |
 | shadcn/ui | `npx skills@latest add Phenomenon-Studio/phenomenon-skills --skill shadcn` |
+| Figma designs | `npx skills@latest add Phenomenon-Studio/phenomenon-skills --skill figma-implement figma-qa` |
 | A backend with Swagger/OpenAPI | `npx skills@latest add Phenomenon-Studio/phenomenon-skills --skill swagger-to-md` |
 
-Details: [Design](./design.md), [TanStack](./skills/tanstack/index.md), [UI kit](./skills/ui-kit/index.md), [API docs](./skills/api-docs/index.md), [Dependencies](./skills/dependencies/index.md).
+Details: [Design](./design.md), [TanStack](./skills/tanstack/index.md), [UI kit](./skills/ui-kit/index.md), [Figma design](./skills/design-qa/index.md), [API docs](./skills/api-docs/index.md), [Dependencies](./skills/dependencies/index.md).
 
 ## 4. Keep skills current
 

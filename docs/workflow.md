@@ -97,7 +97,7 @@ Feedback or audit coming in? Start with our [`triage-feedback`](./skills/triage/
 
 Large or parallel work: [`implement-spec`](https://github.com/mattpocock/skills/tree/main/skills/engineering/implement-spec) (parallel subagents on one branch) and [`wayfinder`](https://github.com/mattpocock/skills/tree/main/skills/engineering/wayfinder) (map of decision tickets).
 
-UI work follows the same loop with [design skills](./design.md) added: `emil-design-eng` while building, and `review-animations` next to `code-review` when the change touches motion.
+UI work follows the same loop with [design skills](./design.md) added: `emil-design-eng` while building, and `review-animations` next to `code-review` when the change touches motion. With a Figma design, build with [`figma-implement`](./skills/design-qa/figma-implement.md) and check with [`figma-qa`](./skills/design-qa/figma-qa.md) next to `code-review`.
 
 Run `tsc` and lint after every change — the cheapest feedback loop there is.
 

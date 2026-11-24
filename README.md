@@ -32,7 +32,7 @@ For the recommended base setup and per-stack add-ons, follow [Getting started](d
 | [api-docs](docs/skills/api-docs/index.md) | `swagger-to-md` |
 | [client](docs/skills/client/index.md) | `client-brief`, `decision-request` |
 | [dependencies](docs/skills/dependencies/index.md) | `generate-browserslist`, `pnpm-audit-install`, `pnpm-audit-update` |
-| [design-qa](docs/skills/design-qa/index.md) | `figma-qa` |
+| [design-qa](docs/skills/design-qa/index.md) | `figma-implement`, `figma-qa` |
 | [react-core](docs/skills/react-core/index.md) | `accessible-html-jsx`, `react`, `typescript` |
 | [security](docs/skills/security/index.md) | `web-security` |
 | [tanstack](docs/skills/tanstack/index.md) | `tanstack-form`, `tanstack-query`, `tanstack-router` |
