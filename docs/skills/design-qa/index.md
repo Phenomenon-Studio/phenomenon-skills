@@ -47,7 +47,7 @@ flowchart TD
 <!-- skills:start -->
 ## Skills
 
-- [`figma-implement`](./figma-implement.md) — Implement or fix UI to exact Figma spec values through a node-by-node ledger, measured in the browser before done. Use when the user shares a figma.com link to build, implement, port, or fix a screen, section, or component layout.
+- [`figma-implement`](./figma-implement.md) — Implement or fix UI to exact Figma spec values through a node-by-node ledger, measured in the browser before done, with the designer's annotations checked against the project. Use when the user shares a figma.com link to build, implement, port, or fix a screen, section, or component layout.
 - [`figma-qa`](./figma-qa.md) — Visual QA of implemented React UI against its Figma design — pairs each Figma node with a rendered story or route, measures computed styles against spec values, and reports every diff with evidence. Use when the user asks whether UI matches Figma, wants design QA / a pixel check / a visual diff, or hands over Figma links to verify an implementation.
 
 Install the whole group:
