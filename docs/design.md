@@ -86,6 +86,9 @@ Run `review-animations` next to [`code-review`](./workflow.md#feature-lifecycle)
 
 Full list: [emilkowalski/skills](https://github.com/emilkowalski/skills).
 
-## Checking against Figma
+## Building and checking against Figma
 
-Taste is half of it; the other half is matching the design you were given. Our [`figma-qa`](./skills/design-qa/figma-qa.md) skill pairs each Figma node with its story or route, measures computed styles against the spec values, and reports every diff with the file that owns it — see [Design QA](./skills/design-qa/index.md).
+Taste is half of it; the other half is matching the design you were given. Two of our skills cover it — see [Figma design](./skills/design-qa/index.md):
+
+- [`figma-implement`](./skills/design-qa/figma-implement.md) builds or fixes UI from a Figma link: every visible node becomes a ledger of spec values, each mapped to the project's tokens and closed only when the browser measures it.
+- [`figma-qa`](./skills/design-qa/figma-qa.md) checks UI that already exists: pairs each Figma node with its story or route, measures computed styles against the spec values, and reports every diff with the file that owns it.

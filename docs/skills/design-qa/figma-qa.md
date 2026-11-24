@@ -12,5 +12,5 @@ Visual QA of implemented React UI against its Figma design — pairs each Figma 
 npx skills@latest add Phenomenon-Studio/phenomenon-skills --skill figma-qa
 ```
 
-Part of [Design QA](./index.md) · [Source](https://github.com/Phenomenon-Studio/phenomenon-skills/tree/main/skills/design-qa/figma-qa)
+Part of [Figma design](./index.md) · [Source](https://github.com/Phenomenon-Studio/phenomenon-skills/tree/main/skills/design-qa/figma-qa)
 <!-- skills:end -->

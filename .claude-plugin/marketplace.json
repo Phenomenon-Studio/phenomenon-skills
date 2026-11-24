@@ -19,6 +19,7 @@
         "./skills/dependencies/generate-browserslist",
         "./skills/dependencies/pnpm-audit-install",
         "./skills/dependencies/pnpm-audit-update",
+        "./skills/design-qa/figma-implement",
         "./skills/design-qa/figma-qa",
         "./skills/react-core/accessible-html-jsx",
         "./skills/react-core/react",
