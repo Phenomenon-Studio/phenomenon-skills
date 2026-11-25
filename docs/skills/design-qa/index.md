@@ -9,6 +9,7 @@ For projects with Figma designs. Both skills need a Figma MCP server and browser
 
 - Building or fixing UI from a Figma link → `figma-implement`.
 - Checking UI that already exists against Figma → `figma-qa`. Storybook makes the run far more reliable — `figma-qa` lists the setup it expects.
+- Checking every Storybook story against the Figma UI kit, in CI as well → the [Storybook Figma QA kit](https://phenomenon-studio.github.io/storybook-figma-qa/), not this group: one `figma-qa report` command with committed refs, a PR comment for designers, and its own agent skills.
 
 **Role in the lifecycle:** `figma-implement` is the **Build** stage for Figma-driven UI: it turns every visible node into a ledger of spec values, maps each to the project's tokens, and closes a value only when the browser measures it. `figma-qa` sits in **Review**, next to `code-review`: code review checks the code against standards and spec; design QA checks the rendered UI against Figma. It reports diffs by default and fixes them only when asked, so the report can go to the designer as-is.
 

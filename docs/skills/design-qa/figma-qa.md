@@ -14,3 +14,7 @@ npx skills@latest add Phenomenon-Studio/phenomenon-skills --skill figma-qa
 
 Part of [Figma design](./index.md) · [Source](https://github.com/Phenomenon-Studio/phenomenon-skills/tree/main/skills/design-qa/figma-qa)
 <!-- skills:end -->
+
+## Projects with the kit
+
+A project with [`@phenomenon-studio/storybook-figma-qa`](https://phenomenon-studio.github.io/storybook-figma-qa/) installed doesn't use this skill: the kit's own `figma-qa` skill runs its `figma-qa report` command and triages the result. See the kit's [Getting started](https://phenomenon-studio.github.io/storybook-figma-qa/getting-started/) to set it up, and [Agent skills](https://phenomenon-studio.github.io/storybook-figma-qa/skills/) for what it installs.
